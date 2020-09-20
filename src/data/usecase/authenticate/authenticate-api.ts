@@ -1,8 +1,4 @@
-import {AccountModel} from '../../../domain/usecase/authInterface';
-import {httpPostClient} from '../../../data/protocols/httpclient/httpclient';
-import {InvalidError} from '../../../domain/protocols/errors/invalidError';
-import {SomethingError} from '../../../domain/protocols/errors/somethingError';
-import {httpstatus} from '../../protocols/httpclient/httpresponse';
+import {AccountModel, httpPostClient, httpstatus, SomethingError, InvalidError} from './';
 
 
 export class Authenticate {

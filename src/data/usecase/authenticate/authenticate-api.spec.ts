@@ -1,11 +1,12 @@
-import {AccountModel, accountModel, httpPostClient, httresponse, Authenticate, InvalidError, Ok, SomethingError, httpstatus} from './index';
+import {token, AccountModel, accountModel, httpPostClient, httresponse, Authenticate, InvalidError, SomethingError, httpstatus} from './index';
+
 
 class HttpPostClientStub implements httpPostClient {
   async post(url: string, data: AccountModel): Promise<httresponse> {
     const res = {
       status: httpstatus.ok,
       body: {
-        token: '34234234234rff',
+        token: token,
       },
     };
 
@@ -17,7 +18,10 @@ class HttpPostClientStub implements httpPostClient {
 }
 
 const makeData = () => {
-  return accountModel;
+  return {
+    accountModel,
+    token: token,
+  };
 };
 
 
@@ -39,39 +43,31 @@ describe('Authenticate-api', () => {
   test('should  ensure httpClient is called with correct url', async () => {
     const {sut, httpPostClient} = makeSut();
     const spy = jest.spyOn(httpPostClient, 'post');
-    const {email, password} = makeData();
-    const data = {
-      email,
-      password,
-    };
-    await sut.auth(data);
+    const {accountModel} = makeData();
 
-    expect(spy).toBeCalledWith('any_url', {'email': email, 'password': password});
+    await sut.auth(accountModel);
+
+    expect(spy).toBeCalledWith('any_url', {'email': accountModel.email, 'password': accountModel.password});
   });
 
   test('should  ensure httpClient is called with correct Account', async () => {
     const {sut, httpPostClient} = makeSut();
     const spy = jest.spyOn(httpPostClient, 'post');
-    const {email, password} = makeData();
-    const data = {
-      email,
-      password,
-    };
-    await sut.auth(data);
+    const {accountModel} = makeData();
 
-    expect(spy).toBeCalledWith('any_url', {'email': email, 'password': password});
+    await sut.auth(accountModel);
+
+    expect(spy).toBeCalledWith('any_url', {'email': accountModel.email, 'password': accountModel.password});
   });
 
   test('if post return 200 should auth return OK', async () => {
     const {sut} = makeSut();
-    const {email, password} = makeData();
-    const data = {
-      email,
-      password,
-    };
-    const res = await sut.auth(data);
+    const {accountModel, token} = makeData();
 
-    expect(res).toEqual(new Ok);
+
+    const res = await sut.auth(accountModel);
+
+    expect(res).toEqual({token});
   });
 
 
@@ -82,7 +78,7 @@ describe('Authenticate-api', () => {
           status: httpstatus.badRequest,
         })),
     );
-    const {email, password} = makeData();
+    const {email, password} = makeData().accountModel;
     const data = {
       email,
       password,
@@ -98,7 +94,7 @@ describe('Authenticate-api', () => {
           status: httpstatus.interNalError,
         })),
     );
-    const {email, password} = makeData();
+    const {email, password} = makeData().accountModel;
     const data = {
       email,
       password,

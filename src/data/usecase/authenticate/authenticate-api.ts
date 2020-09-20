@@ -1,5 +1,9 @@
-import {authParam} from '../../../domain/usecase/authInterface';
-import {httpPostClient} from '../../protocols/httpclient/httpclient';
+import {AccountModel} from '../../../domain/usecase/authInterface';
+import {httpPostClient} from '../../../data/protocols/httpclient/httpclient';
+import {InvalidError} from '../../../domain/protocols/errors/invalidError';
+import {SomethingError} from '../../../domain/protocols/errors/somethingError';
+import {httpstatus} from '../../protocols/httpclient/httpresponse';
+
 
 export class Authenticate {
   constructor(
@@ -7,8 +11,12 @@ export class Authenticate {
     private readonly httpPostClient:httpPostClient ) {}
 
 
-  async auth(data: authParam): Promise<any> {
-    await this.httpPostClient.post(this.url);
-    return new Promise((resolve) => resolve(''));
+  async auth(data: AccountModel): Promise<any> {
+    const reshtppreq = await this.httpPostClient.post(this.url, data);
+    switch (reshtppreq.status) {
+      case httpstatus.badRequest: return new InvalidError();
+      case httpstatus.ok: return reshtppreq.body;
+      default: return new SomethingError();
+    } ;
   }
 }

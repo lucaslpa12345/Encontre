@@ -1,13 +1,11 @@
-export type authParam = {
+export type AccountModel = {
      email: string,
      password: string
 }
-type token = {
-     token: string
-}
+
 
 export interface AuthTypes {
-     auth(data: authParam): Promise<any>
+     auth(data: AccountModel): Promise<any>
 }
 
 

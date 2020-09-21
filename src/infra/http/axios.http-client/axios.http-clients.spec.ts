@@ -14,13 +14,28 @@ const makeData = () => {
 
 
 describe('Axios client http', () => {
-  test('should call axios with correct values ', () => {
+  test('should call axios with correct values ', async () => {
     const sut = new AxiosHttpClient;
     const {accountModel, url} = makeData();
-
-
-    const res = sut.post(url, accountModel);
-
+    await sut.post(url, accountModel);
     expect(axios.post).toHaveBeenCalledWith(url, accountModel);
+  });
+
+  test('should return  response from axios  with correct values ', async () => {
+    const sut = new AxiosHttpClient;
+    const {accountModel, url} = makeData();
+    jest.spyOn(axios, 'post').mockImplementationOnce((): any => {
+      return {
+        status: 200,
+        data: accountModel,
+      };
+    });
+
+
+    const res = await sut.post(url, accountModel);
+    expect(res).toEqual( {
+      status: 200,
+      data: accountModel,
+    });
   });
 });

@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Login} from './presentation/pages/Login'
-import './presentation/components/global.css'
+import './presentation/components/global.css';
+import Routes from './presentation/routes';
 ReactDOM.render(
     <React.StrictMode>
-     <Login/>
-    </React.StrictMode>, 
+      <Routes/>
+    </React.StrictMode>,
     document.getElementById('root'),
 );
 

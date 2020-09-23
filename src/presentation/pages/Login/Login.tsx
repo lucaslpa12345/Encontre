@@ -15,7 +15,7 @@ export function Login() {
     EmailInvalid: false,
     SenhaInvalid: false,
     isLoad: true,
-    error: false,
+    error: true,
   });
 
   function setStateFunction() {

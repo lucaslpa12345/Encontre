@@ -29,46 +29,25 @@
     left: 50% ;
     transform: translateY(-20%) translateX(-50%);
 justify-content: center;
-    width: 25rem; 
-    height: 25rem  ;
+    width: 23rem; 
+    height: 27rem  ;
      display: flex;
      flex-direction: column;
      align-items: center;
      
 }
+@media(max-width: 412px) { 
+    .Container { 
+        height: 100vh ; 
+        background-color: #e5e5e5 ;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: hidden;
+        
+   } 
+}
 
-@media (max-width: 448px) { 
-    .Container .SubContainer .Form { 
-        border-radius: 1rem;
-        background-color: #e5e5e5;
-        position: absolute;
-        left: 50% ;
-        transform: translateY(-20%) translateX(-50%);
-    justify-content: center;
-        width: 20rem; 
-        height: 20rem  ;
-         display: flex;
-         flex-direction: column;
-         align-items: center;
-    }
-    .Container .SubContainer .Form  .Forgot {  
-        align-self: flex-end;
-        margin: 3rem 2rem;
-        font-size: 1rem;
-        text-decoration: none;
-        text-underline-position: above;
-        color : rgb(158, 158, 158)
-   }
-}
-.Container .SubContainer .Form .Logo { 
-     color: #14213d;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     height: 10rem;
-     font-size: 2rem;
-     font-family: 'Poller One', cursive;
-}
 
 @media (min-height: 900px) { 
     .Container .SubContainer .Form { 
@@ -84,20 +63,7 @@ justify-content: center;
          flex-direction: column;
          align-items: center;
      
-    }
-
-    .Container .SubContainer .Form input {
-        margin: 0.4rem ;  
-        border: 0px;
-        outline: 0;
-        padding: 2rem;
-        font-size: 10rem;
-        width: 18rem;
-        background-color:  #e5e5e5;
-        border-bottom: solid 1px rgb(179, 179, 179) ;
-        transition: 0.3s;
-        
-   }
+    }  
 }
 
 
@@ -111,25 +77,9 @@ justify-content: center;
      color : rgb(158, 158, 158)
 }
 
-.Container .SubContainer .Form button{ 
-     width: 10rem;
-     border-radius: 0.5rem;
-     font-size: 1.2vw;
-     height: 3rem ; 
-     border: none;
-     background-color: #14213d;
-     margin-top: 1rem;
-     color: white;
-     outline: none;
-cursor: pointer;
-     
-    
-}
 
 
-.Container .SubContainer .Form button:hover { 
-    background-color: #17284d;
-}
+
 
 .Container .SubContainer .Form .Register { 
   
@@ -144,7 +94,3 @@ cursor: pointer;
      align-items: center;
 }
 
-.Container .SubContainer .Form button img { 
-   max-width: 70%;
-   max-height: 60%;
-}

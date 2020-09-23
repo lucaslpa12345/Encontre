@@ -5,6 +5,8 @@
      flex-direction: column;
      justify-content: center;
      align-items: center;
+     font-family: 'Roboto', sans-serif;
+
     }
 
 .NormalInput { 
@@ -49,9 +51,8 @@
 .ERROR { 
      color: red;
      font-size: 0.9rem;
-     font-family: 'Roboto', sans-serif;
 }
 
 .ERRORCONTAINER { 
-     height: 2rem;
+     height: 3rem;
 }

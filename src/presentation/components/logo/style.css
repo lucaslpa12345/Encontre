@@ -1,0 +1,9 @@
+.Logo { 
+    color: #14213d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10rem;
+    font-size: 2rem;
+    font-family: 'Poller One', cursive;
+}

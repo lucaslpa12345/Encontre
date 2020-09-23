@@ -1,0 +1,39 @@
+.ButtonsContainer { 
+     height: 8rem;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+}
+.Button{ 
+    width: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    font-size: 1rem;
+    height: 2.5rem ;
+    border: none;
+    background-color: #14213d;
+    margin-top: 1rem;
+    color: white;
+    outline: none;
+    cursor: pointer;
+}
+.Button img { 
+    height: 2rem;
+     width: 2rem;
+}
+
+
+.Button:hover { 
+   background-color: #c8ccd3;
+   
+}
+
+.ErrorMessage { 
+     color: red;
+     font-size: 1rem;
+     transition: 0.3s;
+     height: 1rem;
+}

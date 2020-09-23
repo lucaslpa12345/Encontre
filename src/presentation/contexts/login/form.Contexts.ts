@@ -1,7 +1,9 @@
-import { createContext } from 'react'
+import {createContext} from 'react';
 interface State {
     EmailInvalid: Boolean
-     SenhaInvalid: boolean 
+     SenhaInvalid: boolean
+     isLoad: boolean
+     error: boolean
     }
 
-export default createContext({} as  State)
+export default createContext({} as State);

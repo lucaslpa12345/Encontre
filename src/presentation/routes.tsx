@@ -13,7 +13,6 @@ export default () => {
     <BrowserRouter>
       <Switch>
         <Route path='/Login' component={Login} />
-
       </Switch>
     </BrowserRouter>
 

@@ -1,52 +1,76 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './style.css';
 import {ButtonComponent, NormalInput, Logo} from '../../components/';
 import Context from '../../contexts/login/form.Contexts';
+import {Validator} from 'presentation/validators/interfaceValidator';
 
 interface State {
-   EmailInvalid: Boolean
-    SenhaInvalid: boolean
+  EmailIsValid: boolean
+  SenhaIsValid: boolean
     isLoad: boolean
     error: boolean
+    Email: string
+    Senha: string
    }
 
-export function Login() {
-  const [state, setState] = useState<State>({
-    EmailInvalid: false,
-    SenhaInvalid: false,
-    isLoad: true,
-    error: true,
-  });
+   interface LoginTypes {
+     Validator: Validator
+   }
 
-  function setStateFunction() {
-    state.EmailInvalid = !state.EmailInvalid;
-    state.isLoad = !state.isLoad;
-    state.SenhaInvalid = !state.SenhaInvalid;
-    state.error = !state.error;
-    setState({...state});
-  }
+export const Login: React.FC<LoginTypes> = ({Validator}) => {
+  const [state, setState] = useState<State>({
+    EmailIsValid: true,
+    SenhaIsValid: true,
+    Email: '',
+    Senha: '',
+    isLoad: false,
+    error: false,
+  });
+  const [number, setNumber] = useState(0);
+
+  useEffect(() => {
+    setNumber(number + 1);
+  }, [state]);
+
+  useEffect(() => {
+    const EmailisValid = Validator.isValid(state.Email);
+    const newstate = state;
+    if (!newstate.Email) {
+      newstate.EmailIsValid = true;
+      return setState({...newstate});
+    }
+    newstate.EmailIsValid = EmailisValid;
+    setState(newstate);
+  }, [state.Email]);
+
+  useEffect(() => {
+    const SenhaIsValid = Validator.isValid(state.Senha);
+    const newstate = state;
+    if (!newstate.Senha) {
+      newstate.SenhaIsValid = true;
+      return setState({...newstate});
+    }
+    newstate.SenhaIsValid = SenhaIsValid;
+    setState(newstate);
+  }, [state.Senha]);
 
 
   return (
     <div className='Container'>
       <div className='BackgroundColor'></div>
       <main className='SubContainer' >
-        <Context.Provider value={state}>
+        <Context.Provider value={{state, setState}}>
           <form className='Form' action="">
             <Logo/>
-            <NormalInput placeholder='Email' />
-            <NormalInput placeholder ='Senha' />
+            <NormalInput emailIsValid={state.EmailIsValid} placeholder='Email' />
+            <NormalInput senhaisValid={state.SenhaIsValid} placeholder ='Senha' />
             <a className='Forgot' href='/' > Esqueci a senha</a>
-            <ButtonComponent Execute={setStateFunction} Text='Login' />
+            <ButtonComponent Text='Login' />
             <a className='Register' >Registrar</a>
           </form>
         </Context.Provider>
-
       </main>
-
     </div>
-
-
   );
-}
+};
 

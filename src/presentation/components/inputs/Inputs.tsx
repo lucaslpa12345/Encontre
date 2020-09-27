@@ -14,15 +14,6 @@ export const NormalInput : React.FC<InptTypes> = (props) => {
   const {state, setState} = useContext(Context);
   ;
 
-  function returncorrectvar() {
-    if (props.placeholder === 'Email') {
-      return props.emailIsValid;
-    } else {
-      return props.senhaisValid;
-    }
-  }
-
-
   function handleChange(e:React.ChangeEvent<HTMLInputElement> ) {
     state[props.placeholder] = e.target.value;
     setState({...state});
@@ -31,13 +22,13 @@ export const NormalInput : React.FC<InptTypes> = (props) => {
 
   return (
     <div className='InputContainer' >
-      <input onChange={(e)=>{
+      <input value = {state[props.placeholder]} onChange={(e)=>{
         handleChange(e);
-      } } data-testid={props.placeholder} className= { returncorrectvar() ? 'NormalInput' : 'ErrorInput' } placeholder={props.placeholder}
+      } } data-testid={props.placeholder} className= { state[`${props.placeholder}IsValid`] ? 'NormalInput' : 'ErrorInput' } placeholder={props.placeholder}
       type="text"/>
-      {returncorrectvar() ? ( <div className='ERRORCONTAINER' >
+      {state[`${props.placeholder}IsValid`] ? ( <div className='ERRORCONTAINER' >
         <strong> ‏‏‎ ‎‏‏‎ ‎ </strong>
-      </div> ) : ( <div className='ERRORCONTAINER' >
+      </div> ) : ( <div data-testid = 'error' className='ERRORCONTAINER' >
         <strong className='ERROR' >{props.placeholder} Inválido </strong>
       </div> )
       }

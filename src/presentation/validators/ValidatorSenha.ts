@@ -1,12 +1,12 @@
 import {Validator} from './interfaceValidator';
 import validator from 'validator';
-export class ValidateEmail implements Validator {
+export class ValidateSenha implements Validator {
     public value: any
     isValid(value: string): boolean {
       if (!value) {
         return false;
       }
-      const res = validator.isEmail(value);
+      const res = validator.isLength(value, {max: 6});
       return res;
     }
 }

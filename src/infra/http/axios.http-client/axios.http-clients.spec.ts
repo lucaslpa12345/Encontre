@@ -17,25 +17,27 @@ describe('Axios client http', () => {
   test('should call axios with correct values ', async () => {
     const sut = new AxiosHttpClient;
     const {accountModel, url} = makeData();
+    jest.spyOn(axios, 'post');
+    jest.spyOn(axios, 'post').mockReturnValue(new Promise((resolve) => resolve( {
+      status: 200,
+      body: accountModel,
+    })));
     await sut.post(url, accountModel);
     expect(axios.post).toHaveBeenCalledWith(url, accountModel);
   });
 
   test('should return  response from axios  with correct values ', async () => {
     const sut = new AxiosHttpClient;
+
     const {accountModel, url} = makeData();
-    jest.spyOn(axios, 'post').mockImplementationOnce((): any => {
-      return {
-        status: 200,
-        data: accountModel,
-      };
-    });
-
-
+    jest.spyOn(sut, 'post').mockReturnValue(new Promise((resolve) => resolve( {
+      status: 200,
+      body: accountModel,
+    })));
     const res = await sut.post(url, accountModel);
     expect(res).toEqual( {
       status: 200,
-      data: accountModel,
+      body: accountModel,
     });
   });
 });

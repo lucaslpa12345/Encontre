@@ -14,7 +14,7 @@ export const ButtonComponent : React.FC<Props> = ({Text, execute}) => {
   return (
     <div className='ButtonsContainer' >
       <strong data-testid='ErrorMessage' className='ErrorMessage' >{
-        state.error && 'something wrong'}</strong>
+        state.error }</strong>
       <button data-testid='Button' onClick={(e) => execute(e)} className='Button' > { state.isLoad ? <img className='Img' src={Load} alt='Loading' ></img> : <strong>{Text}</strong>} </button>
     </div>
 

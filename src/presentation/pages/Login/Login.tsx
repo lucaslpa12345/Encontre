@@ -3,57 +3,60 @@ import './style.css';
 import {ButtonComponent, NormalInput, Logo} from '../../components/';
 import Context from '../../contexts/login/form.Contexts';
 import {Validator} from 'presentation/validators/interfaceValidator';
-
-interface State {
-  EmailIsValid: boolean
-  SenhaIsValid: boolean
-    isLoad: boolean
-    error: boolean
-    Email: string
-    Senha: string
-   }
+import {AuthTypes} from 'data/usecase/authenticate';
 
    interface LoginTypes {
-     Validator: Validator
+     Validator: {
+       validatorEmail: Validator,
+       validatorSenha: Validator
+     }
+     Authenticate: AuthTypes
    }
 
-export const Login: React.FC<LoginTypes> = ({Validator}) => {
-  const [state, setState] = useState<State>({
+export const Login: React.FC<LoginTypes> = (props) => {
+  const [state, setState] = useState({
     EmailIsValid: true,
     SenhaIsValid: true,
     Email: '',
     Senha: '',
     isLoad: false,
-    error: false,
+    error: '',
   });
-  const [number, setNumber] = useState(0);
+
 
   useEffect(() => {
-    setNumber(number + 1);
-  }, [state]);
-
-  useEffect(() => {
-    const EmailisValid = Validator.isValid(state.Email);
-    const newstate = state;
-    if (!newstate.Email) {
-      newstate.EmailIsValid = true;
-      return setState({...newstate});
+    const EmailisValid = props.Validator.validatorEmail.isValid(state.Email);
+    if (!state.Email) {
+      state.EmailIsValid = true;
+      return setState({...state});
     }
-    newstate.EmailIsValid = EmailisValid;
-    setState(newstate);
+    state.EmailIsValid = EmailisValid;
+    setState({...state});
   }, [state.Email]);
 
   useEffect(() => {
-    const SenhaIsValid = Validator.isValid(state.Senha);
-    const newstate = state;
-    if (!newstate.Senha) {
-      newstate.SenhaIsValid = true;
-      return setState({...newstate});
+    const SenhaIsValid = props.Validator.validatorSenha.isValid(state.Senha);
+    if (!state.Senha) {
+      state.SenhaIsValid = true;
+      return setState({...state});
     }
-    newstate.SenhaIsValid = SenhaIsValid;
-    setState(newstate);
+    state.SenhaIsValid = SenhaIsValid;
+    setState({...state});
   }, [state.Senha]);
 
+
+  async function handleSubmit(e: React.MouseEvent<HTMLButtonElement, MouseEvent> ) {
+    try {
+      e.preventDefault();
+      setState({...state, isLoad: true});
+
+      const auth = await props.Authenticate.auth({email: state.Email, password: state.Senha});
+
+      setState({...state, error: auth.token});
+    } catch (error) {
+
+    }
+  }
 
   return (
     <div className='Container'>
@@ -65,7 +68,7 @@ export const Login: React.FC<LoginTypes> = ({Validator}) => {
             <NormalInput emailIsValid={state.EmailIsValid} placeholder='Email' />
             <NormalInput senhaisValid={state.SenhaIsValid} placeholder ='Senha' />
             <a className='Forgot' href='/' > Esqueci a senha</a>
-            <ButtonComponent Text='Login' />
+            <ButtonComponent execute={handleSubmit} Text='Login' />
             <a className='Register' >Registrar</a>
           </form>
         </Context.Provider>

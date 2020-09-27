@@ -2,22 +2,41 @@ import React from 'react';
 import {render, fireEvent, cleanup} from '@testing-library/react';
 import {Login} from './Login';
 import {Validator} from '../../validators/interfaceValidator';
-
-class ValidationInputs implements Validator {
+import {AccountModel, AuthTypes} from '../../../domain/usecase/authInterface';
+class ValidationEmailStub implements Validator {
   public value: any
   isValid(value: string): boolean {
     this.value = value;
-
     return true;
+  }
+}
+
+class ValidationSenhaStub implements Validator {
+  public value: any
+  isValid(value: string): boolean {
+    this.value = value;
+    return true;
+  }
+}
+
+class AuthenticateStub implements AuthTypes {
+  public data : any
+  auth(data: AccountModel): Promise<any> {
+    this.data = data;
+    return Promise.resolve('');
   }
 }
 
 
 const makeSut = () => {
-  const validation = new ValidationInputs;
+  const validatorEmail = new ValidationEmailStub;
+  const validatorSenha = new ValidationSenhaStub;
+  const authenticate = new AuthenticateStub;
   return {
-    sut: render(<Login Validator={validation} />),
-    validation,
+    sut: render(<Login Validator={{validatorEmail, validatorSenha}} Authenticate={authenticate} />),
+    validatorEmail,
+    validatorSenha,
+    authenticate,
   };
 };
 
@@ -35,13 +54,18 @@ describe('Login Components', () => {
     expect(error.textContent).toBe('');
   });
 
-  test('should  ensure validate', () => {
-    const {sut} = makeSut();
-
+  test('should  ensure validate email is call with correct value', () => {
+    const {sut, validatorEmail} = makeSut();
     const input = sut.getByTestId('Email');
-    fireEvent.change(input, {target: {value: '23'}});
-    input.nodeValue = '$23.0';
-    expect(input.nodeValue).toBe('$23.0');
+    fireEvent.input(input, {target: {value: '23'}});
+    expect(validatorEmail.value).toBe('23');
+  });
+
+  test('should  ensure validate password is call with correct value', () => {
+    const {sut, validatorSenha} = makeSut();
+    const input = sut.getByTestId('Senha' );
+    fireEvent.input(input, {target: {value: '23'}});
+    expect(validatorSenha.value).toBe('23');
   });
 });
 

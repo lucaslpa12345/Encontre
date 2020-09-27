@@ -9,6 +9,8 @@ export class Authenticate {
 
   async auth(data: AccountModel): Promise<any> {
     const reshtppreq = await this.httpPostClient.post(this.url, data);
+
+
     switch (reshtppreq.status) {
       case httpstatus.badRequest: return new InvalidError();
       case httpstatus.ok: return reshtppreq.body;

@@ -1,9 +1,16 @@
 import React from 'react';
-import {ValidationInputs} from '../../presentation/validators/ValiatorEmail';
+import {ValidateEmail, ValidateSenha} from '../../presentation/validators';
 import {Login} from '../../presentation/pages/Login/Login';
-const validator = new ValidationInputs;
+import {AxiosHttpClient} from '../../infra/http/axios.http-client/axios.http-client';
+import {Authenticate} from '../../data/usecase/authenticate/authenticate-api';
 export const LoginFactory = () => {
+  const validatorEmail = new ValidateEmail;
+  const validatorSenha = new ValidateSenha;
+  const clientHttp = new AxiosHttpClient;
+  const authenticate = new Authenticate('http://localhost:2500/login', clientHttp );
+
+
   return (
-    <Login Validator={validator}/>
+    <Login Authenticate={authenticate} Validator={{validatorEmail, validatorSenha}}/>
   );
 };

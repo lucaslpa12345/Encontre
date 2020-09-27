@@ -5,7 +5,7 @@ interface State {
             EmailIsValid: Boolean
             SenhaIsValid: boolean
               isLoad: boolean
-              error: boolean
+              error: string
               Email: string
               Senha: string
          },

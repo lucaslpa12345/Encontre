@@ -6,7 +6,7 @@ export class ValidateSenha implements Validator {
       if (!value) {
         return false;
       }
-      const res = validator.isLength(value, {max: 6});
+      const res = validator.isLength(value, {min: 6});
       return res;
     }
 }

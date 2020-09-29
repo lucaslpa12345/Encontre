@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import './style.css';
 import {ButtonComponent, NormalInput, Logo} from '../../components';
 import Context from '../../contexts/login/form.Contexts';
 import {Validator} from 'presentation/validators/interfaceValidator';
 import {AuthTypes} from 'data/usecase/authenticate';
 import {useHistory} from 'react-router-dom';
-import {} from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import './styleSignup.css';
 
 
    interface SignUpTypes {
@@ -19,13 +19,15 @@ import {} from 'react-router-dom';
 export const SignUp: React.FC<SignUpTypes> = (props) => {
   const history = useHistory();
   const [state, setState] = useState({
-    EmailIsValid: true,
-    SenhaIsValid: true,
-    Email: '',
-    Senha: '',
-    HiddenSenha: '',
-    isLoad: false,
-    error: '',
+    'EmailIsValid': true,
+    'SenhaIsValid': true,
+    'Nome': '',
+    'Email': '',
+    'Senha': '',
+    'Confirmar Senha': '',
+    'HiddenSenha': '',
+    'isLoad': false,
+    'error': '',
   });
 
 
@@ -94,19 +96,19 @@ export const SignUp: React.FC<SignUpTypes> = (props) => {
 
 
   return (
-    <div className='Container'>
-      <div className='BackgroundColor'></div>
-      <main className='SubContainer' >
+    <div className='ContainerSignup'>
+      <div className='BackgroundColorSignup'></div>
+      <main className='SubContainerSignup' >
         <Context.Provider value={{state, setState}}>
-          <form className='Form' action="">
+          <form className='FormSignup' action="">
             <Logo/>
             <NormalInput placeholder='Nome' />
             <NormalInput emailIsValid={state.EmailIsValid} placeholder='Email' />
             <NormalInput senhaisValid={state.SenhaIsValid} placeholder ='Senha' />
             <NormalInput emailIsValid={state.EmailIsValid} placeholder='Confirmar Senha' />
-            <a className='ForgotPassword' href='/' > Esqueci a senha</a>
+            <a className='ForgotPasswordSignup' href='/' > Esqueci a senha</a>
             <ButtonComponent execute={handleSubmit} Text='SignUp' />
-            <a className='Register' >Entrar</a>
+            <Link to='/Login' className='LinkToLogin' >Login</Link>
           </form>
         </Context.Provider>
       </main>

@@ -1,4 +1,4 @@
-.Container { 
+.ContainerLogin { 
      height: 100vh ; 
      background-color: rgb(218, 214, 214) ;
      display: flex;
@@ -8,33 +8,33 @@
      
 }
 
-.Container .SubContainer { 
+.ContainerLogin .SubContainerLogin { 
        width: 70rem;
        height: 100%;
        position: relative;
 }
-.Container  .BackgroundColor { 
+.ContainerLogin  .BackgroundColorLogin { 
      height: 20rem; 
      width: 100%;
          background-color: #5abdf7;
 }
 
-.Container .SubContainer .Form { 
+.ContainerLogin .SubContainerLogin .FormLogin { 
     border-radius: 1rem;
     background-color: #e5e5e5;
     position: absolute;
     left: 50% ;
     transform: translateY(-20%) translateX(-50%);
-justify-content: center;
+    justify-content: center;
     width: 22rem; 
-    height:30rem  ;
+    height: 27rem  ;
      display: flex;
      flex-direction: column;
      align-items: center;
      
 }
 @media(max-width: 412px) { 
-    .Container { 
+    .ContainerLogin { 
         height: 100vh ; 
         background-color: #e5e5e5 ;
         display: flex;
@@ -47,7 +47,7 @@ justify-content: center;
 
 
 @media (min-height: 900px) { 
-    .Container .SubContainer .Form { 
+    .ContainerLogin .SubContainerLogin .FormLogin { 
         border-radius: 1rem;
         background-color: #e5e5e5;
         position: absolute;
@@ -65,7 +65,7 @@ justify-content: center;
 
 
 
-.Container .SubContainer .Form  .ForgotPassword {  
+.ContainerLogin .SubContainerLogin .FormLogin  .ForgotPasswordLogin {  
      align-self: flex-end;
      margin: 1rem 4rem;
      font-size: 1rem;
@@ -78,8 +78,7 @@ justify-content: center;
 
 
 
-.Container .SubContainer .Form .Register { 
-  
+.ContainerLogin .SubContainerLogin .FormLogin .LinkToSignup { 
      margin: 1rem 3rem;
      font-size: 1rem;
      text-decoration: none;

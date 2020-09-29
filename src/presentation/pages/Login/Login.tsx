@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import './style.css';
+import './styleLogin.css';
 import {ButtonComponent, NormalInput, Logo} from '../../components/';
 import Context from '../../contexts/login/form.Contexts';
 import {Validator} from 'presentation/validators/interfaceValidator';
 import {AuthTypes} from 'data/usecase/authenticate';
-import {useHistory} from 'react-router-dom';
+import {useHistory, Link} from 'react-router-dom';
 
 
    interface LoginTypes {
@@ -22,6 +22,8 @@ export const Login: React.FC<LoginTypes> = (props) => {
     SenhaIsValid: true,
     Email: '',
     Senha: '',
+    ConfirmarSenha: '',
+    Nome: '',
     HiddenSenha: '',
     isLoad: false,
     error: '',
@@ -93,17 +95,17 @@ export const Login: React.FC<LoginTypes> = (props) => {
 
 
   return (
-    <div className='Container'>
-      <div className='BackgroundColor'></div>
-      <main className='SubContainer' >
+    <div className='ContainerLogin'>
+      <div className='BackgroundColorLogin'></div>
+      <main className='SubContainerLogin' >
         <Context.Provider value={{state, setState}}>
-          <form className='Form' action="">
+          <form className='FormLogin' action="">
             <Logo/>
             <NormalInput emailIsValid={state.EmailIsValid} placeholder='Email' />
             <NormalInput senhaisValid={state.SenhaIsValid} placeholder ='Senha' />
-            <a className='ForgotPassword' href='/' > Esqueci a senha</a>
+            <a className='ForgotPasswordLogin' href='/' > Esqueci a senha</a>
             <ButtonComponent execute={handleSubmit} Text='Login' />
-            <a className='Register' >Registrar</a>
+            <Link to='/Signup' className='LinkToSignup' >Sign-up</Link>
           </form>
         </Context.Provider>
       </main>

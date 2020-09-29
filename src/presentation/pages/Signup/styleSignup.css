@@ -1,4 +1,4 @@
-.Container { 
+.ContainerSignup { 
      height: 100vh ; 
      background-color: rgb(218, 214, 214) ;
      display: flex;
@@ -8,33 +8,33 @@
      
 }
 
-.Container .SubContainer { 
+.ContainerSignup .SubContainerSignup { 
        width: 70rem;
        height: 100%;
        position: relative;
 }
-.Container  .BackgroundColor { 
+.ContainerSignup  .BackgroundColorSignup { 
      height: 20rem; 
      width: 100%;
          background-color: #5abdf7;
 }
 
-.Container .SubContainer .Form { 
+.ContainerSignup .SubContainerSignup .FormSignup { 
     border-radius: 1rem;
     background-color: #e5e5e5;
     position: absolute;
     left: 50% ;
-    transform: translateY(-20%) translateX(-50%);
-justify-content: center;
+    transform: translateY(-30%) translateX(-50%);
+    justify-content: center;
     width: 22rem; 
-    height: 27rem  ;
+    height: 35rem  ;
      display: flex;
      flex-direction: column;
      align-items: center;
      
 }
 @media(max-width: 412px) { 
-    .Container { 
+    .ContainerSignup { 
         height: 100vh ; 
         background-color: #e5e5e5 ;
         display: flex;
@@ -47,7 +47,7 @@ justify-content: center;
 
 
 @media (min-height: 900px) { 
-    .Container .SubContainer .Form { 
+    .ContainerSignup .SubContainerSignup .FormSignup { 
         border-radius: 1rem;
         background-color: #e5e5e5;
         position: absolute;
@@ -65,29 +65,28 @@ justify-content: center;
 
 
 
-.Container .SubContainer .Form  .ForgotPassword {  
-     align-self: flex-end;
-     margin: 1rem 4rem;
-     font-size: 1rem;
-     text-decoration: none;
-     text-underline-position: above;
-     color : rgb(158, 158, 158)
+.ContainerSignup .SubContainerSignup .FormSignup  .ForgotPasswordSignup {  
+    align-self: flex-end;
+    margin: 1rem 4rem;
+    font-size: 1rem;
+    text-decoration: none;
+    text-underline-position: above;
+    color : rgb(158, 158, 158)
 }
 
 
 
 
 
-.Container .SubContainer .Form .Register { 
-  
-     margin: 1rem 3rem;
-     font-size: 1rem;
-     text-decoration: none;
-     text-underline-position: above;
-     color : rgb(158, 158, 158);
-     cursor: pointer;
-     display: flex;
-     justify-content: center;
-     align-items: center;
+.ContainerSignup .SubContainerSignup .FormSignup .LinkToLogin { 
+    margin: 1rem 3rem;
+    font-size: 1rem;
+    text-decoration: none;
+    text-underline-position: above;
+    color : rgb(158, 158, 158);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 

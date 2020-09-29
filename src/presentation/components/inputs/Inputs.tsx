@@ -7,7 +7,9 @@ interface InptTypes{
      placeholder: string
      emailIsValid?: boolean
      senhaisValid?: boolean
-}
+     nomeIsValid?: boolean
+     confirmarEmailIsValid?: boolean
+    }
 
 
 export const NormalInput : React.FC<InptTypes> = (props) => {
@@ -20,20 +22,35 @@ export const NormalInput : React.FC<InptTypes> = (props) => {
 
 
   const Name = props.placeholder;
-  const elementValidate = state[`${props.placeholder}IsValid`] && !state[`${props.placeholder}IsValid`] ? 'ErrorInput' : 'NormalInput';
+  const elementValidate = state[`${props.placeholder}IsValid`];
+
+  function typeInput() {
+    switch (Name) {
+      case 'Email': return 'email';
+      case 'Senha': return 'password';
+      case 'Confirmar Senha': return 'password';
+      default: return 'text';
+    }
+  }
+
+  function className() {
+    switch (elementValidate) {
+      case false: return 'ErrorInput';
+      default: return 'NormalInput';
+    }
+  }
+
 
   return (
     <div className='InputContainer' >
       <input value = {state[Name]} onChange={(e)=>{
         handleChange(e);
-      } } data-testid={Name} className= { elementValidate } placeholder={Name}
-      type={Name === 'Email' ? 'email' : 'password' }/>
-      {elementValidate ? ( <div data-testid = 'error' className='ErrorContainer' >
-        <strong className='ErrorText' >{Name === 'Email' ? 'Email inválido': 'Mínimo 6 caracteres' }</strong>
-      </div> ) : ( <div className='ErrorContainer' >
-        <strong> ‏‏‎ ‎‏‏‎ ‎ </strong>
-      </div> )
-      }
+      } } data-testid={Name} className={className()} placeholder={Name}
+      type={ typeInput() }/>
+      <div data-testid = 'error' className='ErrorContainer' >
+        {
+        }
+      </div>
     </div>
 
 

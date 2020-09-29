@@ -9,17 +9,14 @@
 }
 
 .Container .SubContainer { 
-    
-     
        width: 70rem;
        height: 100%;
-
- position: relative;
+       position: relative;
 }
 .Container  .BackgroundColor { 
      height: 20rem; 
      width: 100%;
-         background-color: #fca311;
+         background-color: #5abdf7;
 }
 
 .Container .SubContainer .Form { 
@@ -68,7 +65,7 @@ justify-content: center;
 
 
 
-.Container .SubContainer .Form  .Forgot {  
+.Container .SubContainer .Form  .ForgotPassword {  
      align-self: flex-end;
      margin: 1rem 4rem;
      font-size: 1rem;

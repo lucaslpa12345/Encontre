@@ -8,6 +8,7 @@ interface State {
               error: string
               Email: string
               Senha: string
+              HiddenSenha: string
          },
     setState: any,
 

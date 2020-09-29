@@ -14,7 +14,7 @@
     font-size: 1rem;
     height: 2.5rem ;
     border: none;
-    background-color: #14213d;
+    background-color: #517cda;
     margin-top: 1rem;
     color: white;
     outline: none;
@@ -32,8 +32,8 @@
 }
 
 .ErrorMessage { 
-     color: red;
-     font-size: 1rem;
+     color: rgb(184, 0, 0);
+     font-size: 0.9rem;
      transition: 0.3s;
      height: 1rem;
 }

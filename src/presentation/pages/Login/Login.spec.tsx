@@ -1,5 +1,5 @@
 import React from 'react';
-import {render, fireEvent, cleanup} from '@testing-library/react';
+import {render, fireEvent, cleanup, act} from '@testing-library/react';
 import {Login} from './Login';
 import {Validator} from '../../validators/interfaceValidator';
 import {AccountModel, AuthTypes} from '../../../domain/usecase/authInterface';
@@ -42,7 +42,9 @@ const makeSut = () => {
 
 
 describe('Login Components', () => {
-  beforeEach(cleanup);
+  beforeEach(
+      cleanup,
+  );
 
   test('Ensure login components work correctly', () => {
     const {sut} = makeSut();
@@ -52,6 +54,12 @@ describe('Login Components', () => {
     expect(load.childElementCount).toBe(1);
     const error = sut.getByTestId('ErrorMessage');
     expect(error.textContent).toBe('');
+    const Button = sut.getByTestId('Button');
+    act(() => {
+      fireEvent.click(Button);
+    });
+    const imgLoad = sut.getByTestId('ImgLoad');
+    expect(imgLoad).toBeTruthy();
   });
 
   test('should  ensure validate email is call with correct value', () => {

@@ -13,23 +13,25 @@ interface InptTypes{
 export const NormalInput : React.FC<InptTypes> = (props) => {
   const {state, setState} = useContext(Context);
   ;
-
   function handleChange(e:React.ChangeEvent<HTMLInputElement> ) {
     state[props.placeholder] = e.target.value;
     setState({...state});
   }
 
 
+  const Name = props.placeholder;
+  const elementValidate = state[`${props.placeholder}IsValid`] && !state[`${props.placeholder}IsValid`] ? 'ErrorInput' : 'NormalInput';
+
   return (
     <div className='InputContainer' >
-      <input value = {state[props.placeholder]} onChange={(e)=>{
+      <input value = {state[Name]} onChange={(e)=>{
         handleChange(e);
-      } } data-testid={props.placeholder} className= { state[`${props.placeholder}IsValid`] ? 'NormalInput' : 'ErrorInput' } placeholder={props.placeholder}
-      type="text"/>
-      {state[`${props.placeholder}IsValid`] ? ( <div className='ERRORCONTAINER' >
+      } } data-testid={Name} className= { elementValidate } placeholder={Name}
+      type={Name === 'Email' ? 'email' : 'password' }/>
+      {elementValidate ? ( <div data-testid = 'error' className='ErrorContainer' >
+        <strong className='ErrorText' >{Name === 'Email' ? 'Email inválido': 'Mínimo 6 caracteres' }</strong>
+      </div> ) : ( <div className='ErrorContainer' >
         <strong> ‏‏‎ ‎‏‏‎ ‎ </strong>
-      </div> ) : ( <div data-testid = 'error' className='ERRORCONTAINER' >
-        <strong className='ERROR' >{props.placeholder} Inválido </strong>
       </div> )
       }
     </div>
@@ -37,5 +39,4 @@ export const NormalInput : React.FC<InptTypes> = (props) => {
 
   );
 };
-
 

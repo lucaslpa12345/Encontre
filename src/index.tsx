@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './presentation/components/global.css';
-import Routes from './presentation/routes';
+import Routes from './presentation/Routes/routes';
 ReactDOM.render(
     <React.StrictMode>
       <Routes/>

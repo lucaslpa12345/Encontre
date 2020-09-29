@@ -6,6 +6,7 @@ export class AxiosHttpClient implements httpPostClient {
   async post(url: string, data: AccountModel): Promise<httresponse> {
     try {
       const res = await axios.post(url, data);
+      console.log('res', res);
       return new Promise((resolve) => resolve(
           {
             status: res.status,

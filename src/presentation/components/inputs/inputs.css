@@ -1,5 +1,5 @@
 .InputContainer { 
-     height: 5rem ;
+     height: 6rem ;
      width: 100%;
      display: flex;
      flex-direction: column;
@@ -13,7 +13,7 @@
     margin: 0.4rem ;  
     border: 0px;
     outline: 0;
-    padding: 1rem;
+    padding: 0.5rem;
     font-size: 1rem;
     width: 16rem;
     background-color:  #e5e5e5;
@@ -31,7 +31,7 @@
     margin: 0.4rem ;  
     border: 0px;
     outline: 0;
-    padding: 1rem;
+    padding: 0.5rem;
     font-size: 1rem;
     width: 16rem;
     background-color:  #e5e5e5;
@@ -41,18 +41,18 @@
 
 
 .ErrorInput:focus { 
-    border-bottom: solid 1px rgb(255, 3, 3) ;
+    border-bottom: solid 1px rgb(184, 0, 0) ;
     padding-inline-start: 2rem;
 }
 .ErrorInput::placeholder {
-    color: red;
+    color:rgb(184, 0, 0);
 }
 
-.ERROR { 
-     color: red;
-     font-size: 0.9rem;
+.ErrorText { 
+     color: rgb(184, 0, 0);
+     font-size: 1rem;
 }
 
-.ERRORCONTAINER { 
-     height: 3rem;
+.ErrorContainer { 
+     height: 1.5rem;
 }

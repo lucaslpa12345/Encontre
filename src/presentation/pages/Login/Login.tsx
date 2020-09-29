@@ -4,6 +4,8 @@ import {ButtonComponent, NormalInput, Logo} from '../../components/';
 import Context from '../../contexts/login/form.Contexts';
 import {Validator} from 'presentation/validators/interfaceValidator';
 import {AuthTypes} from 'data/usecase/authenticate';
+import {useHistory} from 'react-router-dom';
+
 
    interface LoginTypes {
      Validator: {
@@ -14,11 +16,13 @@ import {AuthTypes} from 'data/usecase/authenticate';
    }
 
 export const Login: React.FC<LoginTypes> = (props) => {
+  const history = useHistory();
   const [state, setState] = useState({
     EmailIsValid: true,
     SenhaIsValid: true,
     Email: '',
     Senha: '',
+    HiddenSenha: '',
     isLoad: false,
     error: '',
   });
@@ -49,14 +53,44 @@ export const Login: React.FC<LoginTypes> = (props) => {
     try {
       e.preventDefault();
       setState({...state, isLoad: true});
-
       const auth = await props.Authenticate.auth({email: state.Email, password: state.Senha});
 
-      setState({...state, error: auth.token});
+      console.log(auth);
+      const error = callError(auth);
+      localStorage.setItem('token', auth.token);
+      if (error) {
+        history.push('/Home');
+      }
     } catch (error) {
 
     }
   }
+
+  function callError(auth: any) {
+    function setErrorToNothing() {
+      return setTimeout( () => setState({...state, error: ''}), 2000);
+    }
+    if (state.isLoad) {
+      return;
+    }
+    if (!state.Email || !state.Senha) {
+      setErrorToNothing();
+      return setState({...state, error: 'Informações inválidas'});
+    }
+
+    if (!state.EmailIsValid || !state.SenhaIsValid) {
+      setErrorToNothing();
+      return setState({...state, error: 'Informações inválidas'});
+    }
+
+    if (!auth.status) {
+      state.error = 'Falha na autenticação';
+      setErrorToNothing();
+      return setState({...state, error: 'Falha na autenticação'});
+    }
+    return true;
+  }
+
 
   return (
     <div className='Container'>
@@ -67,7 +101,7 @@ export const Login: React.FC<LoginTypes> = (props) => {
             <Logo/>
             <NormalInput emailIsValid={state.EmailIsValid} placeholder='Email' />
             <NormalInput senhaisValid={state.SenhaIsValid} placeholder ='Senha' />
-            <a className='Forgot' href='/' > Esqueci a senha</a>
+            <a className='ForgotPassword' href='/' > Esqueci a senha</a>
             <ButtonComponent execute={handleSubmit} Text='Login' />
             <a className='Register' >Registrar</a>
           </form>

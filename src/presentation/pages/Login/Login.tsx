@@ -61,7 +61,7 @@ export const Login: React.FC<LoginTypes> = (props) => {
       e.preventDefault();
       setState({...state, isLoad: true});
       const auth = await props.Authenticate.auth({email: state.Email, password: state.Senha});
-      if (auth.status === 400) {
+      if (auth.status === 400 || 500) {
         setState({...state, error: auth.message});
         return cleanError();
       } else {

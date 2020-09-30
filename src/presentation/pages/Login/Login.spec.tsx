@@ -1,8 +1,9 @@
 import React from 'react';
-import {render, fireEvent, cleanup, act} from '@testing-library/react';
+import {render, fireEvent, cleanup} from '@testing-library/react';
 import {Login} from './Login';
 import {Router} from 'react-router-dom';
 import {createMemoryHistory} from 'history';
+import mockAxios from 'jest-mock-axios';
 
 import {Validator} from '../../validators/interfaceValidator';
 import {AccountModel, AuthTypes} from '../../../domain/usecase/authInterface';
@@ -38,7 +39,7 @@ const makeSut = () => {
   return {
     sut: render(
         <Router history={history} >
-          <Login Validator={{validatorEmail, validatorMinCaracteres}} Authenticate={authenticate} />
+          <Login Authenticate={authenticate}Validator={{validatorEmail, validatorMinCaracteres}} />
         </Router>,
     ),
     validatorEmail,
@@ -52,10 +53,12 @@ describe('Login Components', () => {
   beforeEach(
       cleanup,
   );
+  afterEach(() => {
+    mockAxios.reset();
+  });
 
   test('Ensure login components work correctly', async () => {
     const {sut} = makeSut();
-
     const input = sut.getByTestId('Email');
     expect(input.className).toBe('NormalInput');
     const load = sut.getByTestId('Button');
@@ -76,6 +79,13 @@ describe('Login Components', () => {
   });
 
   test('should  ensure validate password is call with correct value', () => {
+    const {sut, validatorMinCaracteres} = makeSut();
+    const input = sut.getByTestId('Senha' );
+    fireEvent.input(input, {target: {value: '23'}});
+    expect(validatorMinCaracteres.value).toBe('23');
+  });
+
+  test('ensure validate Signup button push to login page', () => {
     const {sut, validatorMinCaracteres} = makeSut();
     const input = sut.getByTestId('Senha' );
     fireEvent.input(input, {target: {value: '23'}});

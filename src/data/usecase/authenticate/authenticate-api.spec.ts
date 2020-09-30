@@ -1,4 +1,4 @@
-import {token, AccountModel, accountModel, httpPostClient, httresponse, Authenticate, InvalidError, SomethingError, httpstatus} from './index';
+import {token, AccountModel, accountModel, httpPostClient, httresponse, Authenticate, invalidData, somethingWrong, httpstatus} from './index';
 
 
 class HttpPostClientStub implements httpPostClient {
@@ -84,7 +84,7 @@ describe('Authenticate-api', () => {
       password,
     };
     const res = await sut.auth(data);
-    expect(res).toEqual(new InvalidError());
+    expect(res).toEqual(invalidData());
   });
 
   test('if post return 400 should auth return Invalid', async () => {
@@ -100,6 +100,6 @@ describe('Authenticate-api', () => {
       password,
     };
     const res = await sut.auth(data);
-    expect(res).toEqual(new SomethingError());
+    expect(res).toEqual(somethingWrong());
   });
 });

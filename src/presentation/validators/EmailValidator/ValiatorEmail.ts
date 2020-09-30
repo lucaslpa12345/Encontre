@@ -1,4 +1,4 @@
-import {Validator} from './interfaceValidator';
+import {Validator} from '../interfaceValidator';
 import validator from 'validator';
 export class ValidateEmail implements Validator {
     public value: any

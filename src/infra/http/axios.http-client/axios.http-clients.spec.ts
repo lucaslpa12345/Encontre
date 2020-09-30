@@ -1,4 +1,3 @@
-import axios from 'axios';
 import {accountModel} from '../../../domain/test/make-account';
 import faker from 'faker';
 import {AxiosHttpClient} from './axios.http-client';

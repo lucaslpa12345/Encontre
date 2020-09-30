@@ -11,7 +11,7 @@ import './styleSignup.css';
    interface SignUpTypes {
      Validator: {
        validatorEmail: Validator,
-       validatorSenha: Validator
+       validatorMinCaracteres: Validator
      }
      Authenticate: AuthTypes
    }
@@ -21,6 +21,8 @@ export const SignUp: React.FC<SignUpTypes> = (props) => {
   const [state, setState] = useState({
     'EmailIsValid': true,
     'SenhaIsValid': true,
+    'Confirmar SenhaIsValid': true,
+    'NomeIsValid': true,
     'Nome': '',
     'Email': '',
     'Senha': '',
@@ -42,7 +44,10 @@ export const SignUp: React.FC<SignUpTypes> = (props) => {
   }, [state.Email]);
 
   useEffect(() => {
-    const SenhaIsValid = props.Validator.validatorSenha.isValid(state.Senha);
+    const SenhaIsValid = props.Validator.validatorMinCaracteres.isValid(state.Senha, 6);
+    if (state['Confirmar Senha']) {
+      verifyPassword();
+    }
     if (!state.Senha) {
       state.SenhaIsValid = true;
       return setState({...state});
@@ -51,6 +56,31 @@ export const SignUp: React.FC<SignUpTypes> = (props) => {
     setState({...state});
   }, [state.Senha]);
 
+  useEffect(() => {
+    verifyPassword();
+  }, [state['Confirmar Senha']]);
+
+  function verifyPassword() {
+    const validate = state['Confirmar Senha'] === state.Senha;
+    if (!validate) {
+      state['Confirmar SenhaIsValid'] = false;
+      return setState({...state});
+    } else {
+      state['Confirmar SenhaIsValid'] = true;
+      return setState({...state});
+    }
+  }
+
+  useEffect(() => {
+    const NameIsValid = props.Validator.validatorMinCaracteres.isValid(state.Nome, 3);
+
+    if (!state.Nome ) {
+      state.NomeIsValid = true;
+      return setState({...state});
+    }
+    state.NomeIsValid = NameIsValid;
+    setState({...state});
+  }, [state['Nome']]);
 
   async function handleSubmit(e: React.MouseEvent<HTMLButtonElement, MouseEvent> ) {
     try {
@@ -58,7 +88,6 @@ export const SignUp: React.FC<SignUpTypes> = (props) => {
       setState({...state, isLoad: true});
       const auth = await props.Authenticate.auth({email: state.Email, password: state.Senha});
 
-      console.log(auth);
       const error = callError(auth);
       localStorage.setItem('token', auth.token);
       if (error) {
@@ -103,9 +132,9 @@ export const SignUp: React.FC<SignUpTypes> = (props) => {
           <form className='FormSignup' action="">
             <Logo/>
             <NormalInput placeholder='Nome' />
-            <NormalInput emailIsValid={state.EmailIsValid} placeholder='Email' />
-            <NormalInput senhaisValid={state.SenhaIsValid} placeholder ='Senha' />
-            <NormalInput emailIsValid={state.EmailIsValid} placeholder='Confirmar Senha' />
+            <NormalInput placeholder='Email' />
+            <NormalInput placeholder ='Senha' />
+            <NormalInput placeholder='Confirmar Senha' />
             <a className='ForgotPasswordSignup' href='/' > Esqueci a senha</a>
             <ButtonComponent execute={handleSubmit} Text='SignUp' />
             <Link to='/Login' className='LinkToLogin' >Login</Link>

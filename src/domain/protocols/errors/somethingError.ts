@@ -1,4 +1,8 @@
-export class SomethingError extends Error {
-    name = 'SomethingError'
-    message = 'something wrong'
+export function somethingWrong() {
+  return {
+    status: 500,
+    message: 'Erro Desconhecido',
+
+  };
 }
+

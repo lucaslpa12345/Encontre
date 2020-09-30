@@ -5,8 +5,10 @@ import {AccountModel, httpPostClient, httresponse} from './';
 export class AxiosHttpClient implements httpPostClient {
   async post(url: string, data: AccountModel): Promise<httresponse> {
     try {
-      const res = await axios.post(url, data);
-      console.log('res', res);
+      const res = await axios.post(url, data, {validateStatus: (status) => {
+        return true;
+      }});
+
       return new Promise((resolve) => resolve(
           {
             status: res.status,

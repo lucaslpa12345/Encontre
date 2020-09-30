@@ -1,2 +1,2 @@
 export * from './ValiatorEmail';
-export * from './ValidatorSenha';
+export * from './ValidatorMinCaracteres';

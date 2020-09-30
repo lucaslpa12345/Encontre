@@ -1,8 +1,11 @@
 import React from 'react';
 import {render, fireEvent, cleanup, act} from '@testing-library/react';
 import {SignUp} from './Signup';
+import {createMemoryHistory} from 'history';
 import {Validator} from '../../validators/interfaceValidator';
 import {AccountModel, AuthTypes} from '../../../domain/usecase/authInterface';
+import {Router} from 'react-router-dom';
+
 class ValidationEmailStub implements Validator {
   public value: any
   isValid(value: string): boolean {
@@ -11,7 +14,7 @@ class ValidationEmailStub implements Validator {
   }
 }
 
-class ValidationSenhaStub implements Validator {
+class ValidatorMinCaracteresStub implements Validator {
   public value: any
   isValid(value: string): boolean {
     this.value = value;
@@ -27,15 +30,19 @@ class AuthenticateStub implements AuthTypes {
   }
 }
 
-
+const history = createMemoryHistory();
 const makeSut = () => {
   const validatorEmail = new ValidationEmailStub;
-  const validatorSenha = new ValidationSenhaStub;
+  const validatorMinCaracteres = new ValidatorMinCaracteresStub;
   const authenticate = new AuthenticateStub;
   return {
-    sut: render(<SignUp Validator={{validatorEmail, validatorSenha}} Authenticate={authenticate} />),
+    sut: render(
+        <Router history={history} >
+          <SignUp Validator={{validatorEmail, validatorMinCaracteres}} Authenticate={authenticate} />
+        </Router>,
+    ),
     validatorEmail,
-    validatorSenha,
+    validatorMinCaracteres,
     authenticate,
   };
 };
@@ -46,8 +53,9 @@ describe('SignUp Components', () => {
       cleanup,
   );
 
-  test('Ensure SignUp components work correctly', () => {
+  test('Ensure SignUp components work correctly', async () => {
     const {sut} = makeSut();
+
     const input = sut.getByTestId('Email');
     expect(input.className).toBe('NormalInput');
     const load = sut.getByTestId('Button');
@@ -55,9 +63,8 @@ describe('SignUp Components', () => {
     const error = sut.getByTestId('ErrorMessage');
     expect(error.textContent).toBe('');
     const Button = sut.getByTestId('Button');
-    act(() => {
-      fireEvent.click(Button);
-    });
+
+    fireEvent.click(Button);
     const imgLoad = sut.getByTestId('ImgLoad');
     expect(imgLoad).toBeTruthy();
   });
@@ -70,10 +77,10 @@ describe('SignUp Components', () => {
   });
 
   test('should  ensure validate password is call with correct value', () => {
-    const {sut, validatorSenha} = makeSut();
+    const {sut, validatorMinCaracteres} = makeSut();
     const input = sut.getByTestId('Senha' );
     fireEvent.input(input, {target: {value: '23'}});
-    expect(validatorSenha.value).toBe('23');
+    expect(validatorMinCaracteres.value).toBe('23');
   });
 });
 

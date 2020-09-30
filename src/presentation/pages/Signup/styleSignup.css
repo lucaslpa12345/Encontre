@@ -44,8 +44,6 @@
         
    } 
 }
-
-
 @media (min-height: 900px) { 
     .ContainerSignup .SubContainerSignup .FormSignup { 
         border-radius: 1rem;
@@ -58,13 +56,9 @@
         height: 30rem  ;
          display: flex;
          flex-direction: column;
-         align-items: center;
-     
+         align-items: center;   
     }  
 }
-
-
-
 .ContainerSignup .SubContainerSignup .FormSignup  .ForgotPasswordSignup {  
     align-self: flex-end;
     margin: 1rem 4rem;
@@ -73,10 +67,6 @@
     text-underline-position: above;
     color : rgb(158, 158, 158)
 }
-
-
-
-
 
 .ContainerSignup .SubContainerSignup .FormSignup .LinkToLogin { 
     margin: 1rem 3rem;

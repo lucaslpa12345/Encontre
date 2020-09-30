@@ -1,14 +1,11 @@
 import React, {useContext} from 'react';
 import './inputs.css';
 import Context from '../../contexts/login/form.Contexts';
+import {selectClassName, handleErro, typeInput} from './InputFunctionsErros';
 
 
 interface InptTypes{
      placeholder: string
-     emailIsValid?: boolean
-     senhaisValid?: boolean
-     nomeIsValid?: boolean
-     confirmarEmailIsValid?: boolean
     }
 
 
@@ -22,33 +19,17 @@ export const NormalInput : React.FC<InptTypes> = (props) => {
 
 
   const Name = props.placeholder;
-  const elementValidate = state[`${props.placeholder}IsValid`];
-
-  function typeInput() {
-    switch (Name) {
-      case 'Email': return 'email';
-      case 'Senha': return 'password';
-      case 'Confirmar Senha': return 'password';
-      default: return 'text';
-    }
-  }
-
-  function className() {
-    switch (elementValidate) {
-      case false: return 'ErrorInput';
-      default: return 'NormalInput';
-    }
-  }
-
+  const InputIsValid = state[`${props.placeholder}IsValid`];
 
   return (
     <div className='InputContainer' >
       <input value = {state[Name]} onChange={(e)=>{
         handleChange(e);
-      } } data-testid={Name} className={className()} placeholder={Name}
-      type={ typeInput() }/>
+      } } data-testid={Name} className={selectClassName(InputIsValid)} placeholder={Name}
+      type={ typeInput(Name) }/>
       <div data-testid = 'error' className='ErrorContainer' >
         {
+          InputIsValid === false ? <strong className='ErrorText' >{handleErro(Name)}</strong> : ''
         }
       </div>
     </div>

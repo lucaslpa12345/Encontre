@@ -1,4 +1,7 @@
-export class InvalidError extends Error {
-    name = 'InvalidError'
-    message = 'something is invalid'
+export function invalidData() {
+  return {
+    status: 400,
+    message: 'Informações inválidas',
+
+  };
 }

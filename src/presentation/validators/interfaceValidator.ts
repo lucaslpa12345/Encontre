@@ -1,3 +1,3 @@
 export interface Validator {
-    isValid(value: string): boolean
+    isValid(value: string, min?: number): boolean
 }

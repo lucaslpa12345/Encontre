@@ -1,12 +1,12 @@
 import {Validator} from './interfaceValidator';
 import validator from 'validator';
-export class ValidateSenha implements Validator {
+export class ValidateMinCaracteres implements Validator {
     public value: any
-    isValid(value: string): boolean {
+    isValid(value: string, min : number): boolean {
       if (!value) {
         return false;
       }
-      const res = validator.isLength(value, {min: 6});
+      const res = validator.isLength(value, {min: min});
       return res;
     }
 }

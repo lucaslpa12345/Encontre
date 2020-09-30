@@ -1,4 +1,9 @@
-export class Unauthorized extends Error {
-    name = 'Unauthorized'
-    message = 'Unauthorized'
+export function unauthorizate() {
+  return {
+    status: 401,
+    message: 'Sem permissão',
+
+  };
 }
+
+

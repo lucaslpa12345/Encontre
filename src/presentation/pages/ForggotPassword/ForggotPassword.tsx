@@ -4,7 +4,7 @@ export interface HomeProps {
 
 }
 
-export const Home: React.FC<HomeProps> = () => {
+export const ForggotPassword: React.FC<HomeProps> = () => {
   return (
 
 

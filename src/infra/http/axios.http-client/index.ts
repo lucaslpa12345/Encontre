@@ -6,3 +6,4 @@ export * from '../../../domain/protocols/errors/somethingError';
 export * from '../../../domain/protocols/success/ok';
 export * from '../../../domain/test/make-account';
 export * from '../../../domain/test/make-token';
+export * from './axios.http-client';

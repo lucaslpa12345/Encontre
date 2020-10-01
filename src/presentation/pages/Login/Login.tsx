@@ -84,9 +84,9 @@ export const Login: React.FC<LoginTypes> = (props) => {
             <Logo/>
             <NormalInput placeholder='Email' />
             <NormalInput placeholder ='Senha' />
-            <a className='ForgotPasswordLogin' href='/' > Esqueci a senha</a>
+            <Link data-testid='ButtonForggotPassword' className='ForgotPasswordLogin' to='/ForggotPassword' > Esqueci a senha</Link>
             <ButtonComponent execute={handleSubmit} Text='Login' />
-            <Link to='/Signup' className='LinkToSignup' >Sign-up</Link>
+            <Link data-testid='ButtonSignup' to='/Signup' className='LinkToSignup' >Sign-up</Link>
           </form>
         </Context.Provider>
       </main>

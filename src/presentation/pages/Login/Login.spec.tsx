@@ -85,11 +85,18 @@ describe('Login Components', () => {
     expect(validatorMinCaracteres.value).toBe('23');
   });
 
-  test('ensure validate Signup button push to login page', () => {
-    const {sut, validatorMinCaracteres} = makeSut();
-    const input = sut.getByTestId('Senha' );
-    fireEvent.input(input, {target: {value: '23'}});
-    expect(validatorMinCaracteres.value).toBe('23');
+  test('ensure  Signup button push to Signup page', () => {
+    const {sut} = makeSut();
+    const Button = sut.getByTestId('ButtonSignup');
+    fireEvent.click(Button);
+    expect(history.entries[1].pathname).toBe('/Signup');
+  });
+
+  test('ensure  ForggotPassword button push to ForggotPassword page', () => {
+    const {sut} = makeSut();
+    const Button = sut.getByTestId('ButtonForggotPassword');
+    fireEvent.click(Button);
+    expect(history.entries[2].pathname).toBe('/ForggotPassword');
   });
 });
 

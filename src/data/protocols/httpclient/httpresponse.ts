@@ -10,4 +10,5 @@ export enum httpstatus {
 export interface httresponse {
  status: httpstatus
  body?: any
+ message?: string
 }

@@ -81,7 +81,6 @@ export const Login: React.FC<LoginTypes> = (props) => {
       <main className='SubContainerLogin' >
         <Context.Provider value={{state, setState}}>
           <form className='FormLogin' action="">
-            <Logo/>
             <NormalInput placeholder='Email' />
             <NormalInput placeholder ='Senha' />
             <Link data-testid='ButtonForggotPassword' className='ForgotPasswordLogin' to='/ForggotPassword' > Esqueci a senha</Link>

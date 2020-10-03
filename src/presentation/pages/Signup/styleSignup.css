@@ -16,7 +16,7 @@
 .ContainerSignup  .BackgroundColorSignup { 
      height: 20rem; 
      width: 100%;
-         background-color: #5abdf7;
+         background-color:  rgb(47, 121, 190);
 }
 
 .ContainerSignup .SubContainerSignup .FormSignup { 
@@ -26,8 +26,9 @@
     left: 50% ;
     transform: translateY(-30%) translateX(-50%);
     justify-content: center;
-    width: 22rem; 
-    height: 35rem  ;
+    width: 19rem; 
+    height: 30rem  ;
+    padding: 2rem;
      display: flex;
      flex-direction: column;
      align-items: center;
@@ -61,7 +62,7 @@
 }
 .ContainerSignup .SubContainerSignup .FormSignup  .ForgotPasswordSignup {  
     align-self: flex-end;
-    margin: 1rem 4rem;
+    margin: 1rem 1rem;
     font-size: 1rem;
     text-decoration: none;
     text-underline-position: above;

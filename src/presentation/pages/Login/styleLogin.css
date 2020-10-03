@@ -16,7 +16,7 @@
 .ContainerLogin  .BackgroundColorLogin { 
      height: 20rem; 
      width: 100%;
-         background-color: #5abdf7;
+         background-color:  rgb(47, 121, 190);
 }
 
 .ContainerLogin .SubContainerLogin .FormLogin { 
@@ -26,8 +26,9 @@
     left: 50% ;
     transform: translateY(-20%) translateX(-50%);
     justify-content: center;
-    width: 22rem; 
-    height: 27rem  ;
+    width: 19rem; 
+    height: 25rem  ;
+    padding: 2rem;
      display: flex;
      flex-direction: column;
      align-items: center;
@@ -67,7 +68,7 @@
 
 .ContainerLogin .SubContainerLogin .FormLogin  .ForgotPasswordLogin {  
      align-self: flex-end;
-     margin: 1rem 4rem;
+     margin: 1rem 1rem;
      font-size: 1rem;
      text-decoration: none;
      text-underline-position: above;

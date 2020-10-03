@@ -1,11 +1,10 @@
 import React from 'react';
-import {render, fireEvent, cleanup, act} from '@testing-library/react';
+import {render, fireEvent, cleanup} from '@testing-library/react';
 import {SignUp} from './Signup';
 import {createMemoryHistory} from 'history';
 import {Validator} from '../../validators/interfaceValidator';
-import {AccountModel, AuthTypes} from '../../../domain/usecase/authInterface';
 import {Router} from 'react-router-dom';
-
+import {Register} from '../../../data/usecase/register/register.api';
 class ValidationEmailStub implements Validator {
   public value: any
   isValid(value: string): boolean {
@@ -22,9 +21,9 @@ class ValidatorMinCaracteresStub implements Validator {
   }
 }
 
-class AuthenticateStub implements AuthTypes {
+class HttpClientStub {
   public data : any
-  auth(data: AccountModel): Promise<any> {
+  post(url: string, data: any): Promise<any> {
     this.data = data;
     return Promise.resolve('');
   }
@@ -34,16 +33,17 @@ const history = createMemoryHistory();
 const makeSut = () => {
   const validatorEmail = new ValidationEmailStub;
   const validatorMinCaracteres = new ValidatorMinCaracteresStub;
-  const authenticate = new AuthenticateStub;
+  const httpclient = new HttpClientStub;
+  const register = new Register('any_url', httpclient);
   return {
     sut: render(
         <Router history={history} >
-          <SignUp Validator={{validatorEmail, validatorMinCaracteres}} Authenticate={authenticate} />
+          <SignUp Validator={{validatorEmail, validatorMinCaracteres}} Register={register} />
         </Router>,
     ),
     validatorEmail,
     validatorMinCaracteres,
-    authenticate,
+    register,
   };
 };
 
@@ -53,9 +53,9 @@ describe('SignUp Components', () => {
       cleanup,
   );
 
+
   test('Ensure SignUp components work correctly', async () => {
     const {sut} = makeSut();
-
     const input = sut.getByTestId('Email');
     expect(input.className).toBe('NormalInput');
     const load = sut.getByTestId('Button');
@@ -63,7 +63,6 @@ describe('SignUp Components', () => {
     const error = sut.getByTestId('ErrorMessage');
     expect(error.textContent).toBe('');
     const Button = sut.getByTestId('Button');
-
     fireEvent.click(Button);
     const imgLoad = sut.getByTestId('ImgLoad');
     expect(imgLoad).toBeTruthy();

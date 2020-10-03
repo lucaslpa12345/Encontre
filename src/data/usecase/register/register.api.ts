@@ -1,6 +1,6 @@
 import {RegisterTypes, RegisterAccountModel} from '../../../domain/usecase/registerInterface';
 import {httpPostClient, httresponse, httpstatus} from '../../protocols/';
-import {} from '../../../domain/protocols/';
+import {somethingWrong, invalidData} from '../../../domain/protocols/';
 
 
 export class Register implements RegisterTypes {
@@ -9,11 +9,12 @@ export class Register implements RegisterTypes {
     private readonly httpClient: httpPostClient ) {}
     public data:any
     async reg(data: RegisterAccountModel ): Promise<httresponse> {
-      this.httpClient.post(this.url, data);
+      const res = await this.httpClient.post(this.url, data);
       this.data = data;
-      return {
-        status: 200,
-        body: 'cuckeira',
-      };
+      switch (res.status) {
+        case httpstatus.ok: return res.body;
+        case httpstatus.badRequest: return invalidData();
+        default: return somethingWrong();
+      }
     }
 }

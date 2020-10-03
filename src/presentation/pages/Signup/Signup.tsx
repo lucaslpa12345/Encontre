@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {ButtonComponent, NormalInput, Logo} from '../../components';
 import Context from '../../contexts/login/form.Contexts';
 import {Validator} from 'presentation/validators/interfaceValidator';
-import {AuthTypes} from 'data/usecase/authenticate';
+import {RegisterTypes} from 'domain/usecase/registerInterface';
 import {useHistory} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import './styleSignup.css';
@@ -13,7 +13,7 @@ import './styleSignup.css';
        validatorEmail: Validator,
        validatorMinCaracteres: Validator
      }
-     Authenticate: AuthTypes
+     Register: RegisterTypes
    }
 
 export const SignUp: React.FC<SignUpTypes> = (props) => {
@@ -82,45 +82,21 @@ export const SignUp: React.FC<SignUpTypes> = (props) => {
     setState({...state});
   }, [state['Nome']]);
 
-  async function handleSubmit(e: React.MouseEvent<HTMLButtonElement, MouseEvent> ) {
+  async function handleSubmitRegister(e: React.MouseEvent<HTMLButtonElement, MouseEvent> ) {
     try {
       e.preventDefault();
       setState({...state, isLoad: true});
-      const auth = await props.Authenticate.auth({email: state.Email, password: state.Senha});
-
-      const error = callError(auth);
-      localStorage.setItem('token', auth.token);
-      if (error) {
-        history.push('/Home');
+      const auth = await props.Register.reg({name: state.Nome, email: state.Email, password: state.Senha, passwordConfirm: state['Confirmar Senha']});
+      console.log(auth);
+      if (auth.message) {
+        return setState({...state, error: auth.message});
+      } else {
+        alert('Cadastrado com sucesso!');
+        return history.push('/Login');
       }
     } catch (error) {
 
     }
-  }
-
-  function callError(auth: any) {
-    function setErrorToNothing() {
-      return setTimeout( () => setState({...state, error: ''}), 2000);
-    }
-    if (state.isLoad) {
-      return;
-    }
-    if (!state.Email || !state.Senha) {
-      setErrorToNothing();
-      return setState({...state, error: 'Informações inválidas'});
-    }
-
-    if (!state.EmailIsValid || !state.SenhaIsValid) {
-      setErrorToNothing();
-      return setState({...state, error: 'Informações inválidas'});
-    }
-
-    if (!auth.status) {
-      state.error = 'Falha na autenticação';
-      setErrorToNothing();
-      return setState({...state, error: 'Falha na autenticação'});
-    }
-    return true;
   }
 
 
@@ -130,13 +106,12 @@ export const SignUp: React.FC<SignUpTypes> = (props) => {
       <main className='SubContainerSignup' >
         <Context.Provider value={{state, setState}}>
           <form className='FormSignup' action="">
-            <Logo/>
             <NormalInput placeholder='Nome' />
             <NormalInput placeholder='Email' />
             <NormalInput placeholder ='Senha' />
             <NormalInput placeholder='Confirmar Senha' />
             <a className='ForgotPasswordSignup' href='/' > Esqueci a senha</a>
-            <ButtonComponent execute={handleSubmit} Text='SignUp' />
+            <ButtonComponent execute={handleSubmitRegister} Text='SignUp' />
             <Link to='/Login' className='LinkToLogin' >Login</Link>
           </form>
         </Context.Provider>

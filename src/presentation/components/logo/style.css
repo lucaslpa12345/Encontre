@@ -1,11 +1,10 @@
 .Logo { 
-    color: #14213d;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 7rem;
+      height: 10rem;
+}
+
+.Logo strong { 
+    color: black;
     font-size: 2rem;
-    font-family: 'Poller One', cursive;
-    transform: translateY(-10%);
+    margin: 1rem;
 }
 

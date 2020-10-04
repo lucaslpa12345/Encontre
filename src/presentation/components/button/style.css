@@ -14,7 +14,7 @@
     font-size: 1rem;
     height: 2.5rem ;
     border: none;
-    background-color: #517cda;
+    background-color: rgb(47, 121, 190);
     margin-top: 1rem;
     color: white;
     outline: none;
@@ -27,7 +27,7 @@
 
 
 .Button:hover { 
-   background-color:#142b5e;
+   background-color:rgb(28, 96, 160)
    
 }
 

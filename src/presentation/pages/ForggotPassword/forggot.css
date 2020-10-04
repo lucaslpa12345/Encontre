@@ -1,0 +1,61 @@
+.ForggotPassword { 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 13rem;
+    padding: 1rem; 
+}
+
+
+.ForggotPassword label {
+    font-size: 2rem;
+}
+
+.ForggotPassword input { 
+     font-size: 1rem;
+     padding: 0.5rem;
+     width: 16rem;
+     outline: black;
+}
+.ForggotPassword img { 
+     width: 2.5rem;
+}
+
+.ForggotPassword .ButtonsForggotContainer { 
+    height: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.ButtonToRecuperar { 
+       text-decoration: none;
+       color: white;
+       height: 2rem;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       width: 7rem;
+       background-color: rgb(47, 121, 190);
+       border: none;
+       outline: none;
+}
+
+ .ButtonToRecuperar:hover { 
+    background-color: rgb(28, 96, 160);
+
+}
+
+.LinkToBack { 
+    text-decoration: none;
+    font-size: 1rem;
+    color : rgb(80, 80, 80)
+}
+
+.LinkToBack:hover{ 
+    
+    color : rgb(9, 48, 179)
+}

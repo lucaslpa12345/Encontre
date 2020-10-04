@@ -20,7 +20,7 @@ export default () => {
         <Route path='/Login' component={LoginFactory} />
         <Route path='/Home' component={Home} />
         <Route path='/Signup' component={SignUpFactory} />
-        <Route path='./ForggotPassword' component={ForggotPassword} />
+        <Route path='/ForggotPassword' component={ForggotPassword} />
       </Switch>
     </BrowserRouter>
 

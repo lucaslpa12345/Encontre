@@ -8,7 +8,7 @@ const makeSut = () => {
   return {
     sut: render(
         <Router history={history} >
-           <ForggotPassword/>
+          <ForggotPassword/>
         </Router>,
 
     ),

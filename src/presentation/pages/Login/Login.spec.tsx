@@ -89,7 +89,6 @@ describe('Login Components', () => {
     const {sut} = makeSut();
     const Button = sut.getByTestId('ButtonSignup');
     fireEvent.click(Button);
-    console.log(history)
     expect(history.entries[1].pathname).toBe('/Signup');
   });
 

@@ -23,7 +23,11 @@ export const ForggotPassword: React.FC<props> = (props) => {
 
   async function handleSubmit(e:React.MouseEvent<HTMLButtonElement>) {
     setState({...state, isLoad: true});
-    props.sendEmail.send(state.Email).then(() => setState({...state, Sended: true}));
+    return await props.sendEmail.send(state.Email).then(() => setState({...state, Sended: true}));
+  }
+
+  function handleonChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setState({...state, Email: e.target.value});
   }
 
 
@@ -37,7 +41,7 @@ export const ForggotPassword: React.FC<props> = (props) => {
           {state.Sended ? <strong >Se o email estiver associado a alguma conta <br/> enviaremos um email de recuperação !!</strong> : (
          <>
            <label htmlFor="Email">Digite o email da conta a ser recuperada</label>
-           <input id='Email' value={state.Email} placeholder='Email' type="email"/>
+           <input onChange={(e) => handleonChange(e)} id='Email' value={state.Email} placeholder='Email' type="email"/>
            <div className='ButtonsForggotContainer' >
              {state.isLoad ? <img src={load} alt='Load' ></img> : (<button onClick={(e) => handleSubmit(e)} className='ButtonToRecuperar' > Enviar </button>
              ) }

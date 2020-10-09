@@ -115,7 +115,7 @@ export const SignUp: React.FC<SignUpTypes> = (props) => {
             <ButtonComponent execute={handleSubmitRegister} Text='SignUp' />
             <div>
               <Link to='/Login' className='LinkToLogin' >Login</Link>
-              <Link to='/Login' className='LinkToLogin' >Voltar para o início</Link>
+              <Link to='/' className='LinkToLogin' >Voltar para o início</Link>
             </div>
 
           </form>

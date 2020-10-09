@@ -7,7 +7,7 @@ export class SendEmail implements sendEmailInterface {
     private readonly url : string,
   ) {}
   send(email: string) : Promise<httresponse> {
-    const res = this.httclient.post( this.url, email);
+    const res = this.httclient.post(this.url, {email: email});
 
     return new Promise((resolve) => resolve(res));
   }

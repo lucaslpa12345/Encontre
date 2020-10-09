@@ -20,7 +20,7 @@ const makeSut = () => {
 };
 
 describe('Forggot Password', () => {
-  test('should ensure show img after button press ', () => {
+  test('should correctly send a email', () => {
 
   });
 });

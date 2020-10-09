@@ -61,12 +61,13 @@ export const Login: React.FC<LoginTypes> = (props) => {
       e.preventDefault();
       setState({...state, isLoad: true});
       const auth = await props.Authenticate.auth({email: state.Email, password: state.Senha});
-      if (auth.status === 400 || 500) {
-        setState({...state, error: auth.message});
-        return cleanError();
-      } else {
+      console.log('wtf', auth);
+      if (auth.status === 200) {
         localStorage.setItem('token', auth.data);
         history.push('/Home');
+        return;
+      } else {
+        setState({...state, error: auth.message});
         return cleanError();
       }
     } catch (error) {

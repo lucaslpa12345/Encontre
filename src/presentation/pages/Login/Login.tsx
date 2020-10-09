@@ -88,7 +88,7 @@ export const Login: React.FC<LoginTypes> = (props) => {
             <Link data-testid='ButtonForggotPassword' className='ForgotPasswordLogin' to='/ForggotPassword' > Esqueci a senha</Link>
             <ButtonComponent execute={handleSubmit} Text='Login' />
             <div>
-              <Link to='/Signup' className='LinkToSignup' >SignUp</Link>
+              <Link to='/Signup' data-testid="ButtonSignup" className='LinkToSignup' >SignUp</Link>
               <Link to='/' className='LinkToSignup' >Voltar para o início</Link>
             </div>
           </form>

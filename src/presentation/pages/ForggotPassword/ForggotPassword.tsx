@@ -2,13 +2,18 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import './forggot.css';
 import load from '../../../assets/load2.gif';
+import {sendEmailInterface} from '../../../domain/usecase/sendemail';
+interface props {
+   sendEmail: sendEmailInterface
+}
+
 export interface stateProps {
      isLoad: boolean
      Email: string
      Sended: boolean
 }
 
-export const ForggotPassword: React.FC = () => {
+export const ForggotPassword: React.FC<props> = (props) => {
   const [state, setState] = useState<stateProps>({
     isLoad: false,
     Email: '',
@@ -16,11 +21,9 @@ export const ForggotPassword: React.FC = () => {
   });
 
 
-  function handleSubmit(e:React.MouseEvent<HTMLButtonElement>) {
+  async function handleSubmit(e:React.MouseEvent<HTMLButtonElement>) {
     setState({...state, isLoad: true});
-    setTimeout(() => {
-      setState({...state, Sended: true});
-    }, 4000);
+    props.sendEmail.send(state.Email).then(() => setState({...state, Sended: true}));
   }
 
 
@@ -34,9 +37,9 @@ export const ForggotPassword: React.FC = () => {
           {state.Sended ? <strong >Se o email estiver associado a alguma conta <br/> enviaremos um email de recuperação !!</strong> : (
          <>
            <label htmlFor="Email">Digite o email da conta a ser recuperada</label>
-           <input id='Email' placeholder='Email' type="email"/>
+           <input id='Email' value={state.Email} placeholder='Email' type="email"/>
            <div className='ButtonsForggotContainer' >
-             {state.isLoad ? <img src={load} alt='Load' ></img> : (<button onClick={(e) => handleSubmit(e)} className='ButtonToRecuperar' > Recuperar </button>
+             {state.isLoad ? <img src={load} alt='Load' ></img> : (<button onClick={(e) => handleSubmit(e)} className='ButtonToRecuperar' > Enviar </button>
              ) }
 
            </div>

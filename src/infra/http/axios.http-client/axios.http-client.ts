@@ -1,9 +1,9 @@
 import axios from 'axios';
-import {AccountModel, httpPostClient, httresponse} from './';
+import {httpPostClient, httresponse} from './';
 
 
 export class AxiosHttpClient implements httpPostClient {
-  async post(url: string, data: AccountModel): Promise<httresponse> {
+  async post(url: string, data: any): Promise<httresponse> {
     try {
       const res = await axios.post(url, data, {validateStatus: () => {
         return true;

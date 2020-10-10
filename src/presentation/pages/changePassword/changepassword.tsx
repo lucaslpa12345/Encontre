@@ -5,13 +5,15 @@ import Context from '../../contexts/login/form.Contexts';
 import {Validator} from 'presentation/validators/interfaceValidator';
 import {Logo} from '../../components/logo/index';
 import {updateaccount} from '../../../domain/usecase/updateaccount';
+import {useHistory} from 'react-router-dom';
 
    interface ChangePasswordTypes {
-       validatorMinCaracteres: Validator
+       validatorMinCaracteres: Validator,
        updateaccount : updateaccount
    }
 
 export const ChangePassword: React.FC<ChangePasswordTypes> = (props) => {
+  const history = useHistory();
   const [state, setState] = useState({
     'SenhaIsValid': true,
     'Confirmar SenhaIsValid': true,
@@ -19,17 +21,30 @@ export const ChangePassword: React.FC<ChangePasswordTypes> = (props) => {
     'Confirmar Senha': '',
     'isLoad': false,
     'error': '',
+    'token': '',
   });
 
   async function handleSubmit(e: React.MouseEvent<HTMLButtonElement, MouseEvent> ) {
+    setTimeout(() => {
+      setState({...state, error: ''});
+    }, 3000);
     e.preventDefault();
     setState({...state, isLoad: true});
     if (!state.SenhaIsValid || !state['Confirmar SenhaIsValid'] || !state.Senha || !state['Confirmar Senha'] ) {
       setState({...state, isLoad: false});
       return setState({...state, error: 'Informações inválidas'});
     }
-    const res = await props.updateaccount.update(state.Senha);
+    const res = await props.updateaccount.update(state.Senha, state.token);
+    const message = res.message || '';
+    if (res.status === 500) {
+      return setState({...state, error: message});
+    }
     console.log(res);
+    if (res.status === 400) {
+      return setState({...state, error: message});
+    }
+    alert('Senha alterada com sucesso!! agora te levaremos até a tela de login');
+    history.push('/Login');
   }
 
   useEffect( () => {
@@ -55,6 +70,13 @@ export const ChangePassword: React.FC<ChangePasswordTypes> = (props) => {
   useEffect(() => {
     verifyPassword();
   }, [state['Confirmar Senha']]);
+
+  useEffect(() => {
+    const [, token] = window.location.href.split('=');
+    console.log(token);
+
+    setState({...state, token});
+  }, []);
 
   function verifyPassword() {
     const validate = state['Confirmar Senha'] === state.Senha;

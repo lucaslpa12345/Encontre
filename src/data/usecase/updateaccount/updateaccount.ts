@@ -7,14 +7,24 @@ export class UpdateAccount implements updateaccount {
          private readonly httpPutClient: httpClient,
          private readonly url : string,
   ) {}
-  async update(password: string): Promise<httpresponse> {
-    console.log('doidera');
-    const res = await this.httpPutClient.put(this.url, password);
-
-    if (res.status !== 200) {
+  async update(password: string, token: string): Promise<httpresponse> {
+    const data = {
+      password,
+      token: this.url + token,
+    };
+    console.log(data);
+    const res = await this.httpPutClient.put(this.url, data);
+    console.log(res);
+    if (res.status === 500) {
       return {
         status: 500,
         message: 'Erro não identificado',
+      };
+    }
+    if (res.status === 400) {
+      return {
+        status: 400,
+        message: res.body.error,
       };
     }
     return new Promise((resolve) => resolve({

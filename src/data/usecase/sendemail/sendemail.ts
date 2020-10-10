@@ -6,9 +6,17 @@ export class SendEmail implements sendEmailInterface {
   constructor(private readonly httclient: httpClient,
     private readonly url : string,
   ) {}
-  send(email: string) : Promise<httpresponse> {
-    const res = this.httclient.post(this.url, {email: email});
-
+  async send(email: string) : Promise<httpresponse> {
+    const res = await this.httclient.post(this.url, {email: email});
+    console.log(res);
+    if (!res.status) {
+      console.log('cu1');
+      return new Promise((resolve) => resolve({
+        status: 500,
+        message: 'Erro no servidor.',
+      }));
+    }
+    console.log('cu');
     return new Promise((resolve) => resolve(res));
   }
 }

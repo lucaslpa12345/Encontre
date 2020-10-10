@@ -3,7 +3,7 @@ import {AxiosHttpClient} from '../../../infra/http/axios.http-client/axios.http-
 
 const makeSut = () => {
   const httpclient = new AxiosHttpClient;
-  const linktest = 'http://localhost:2500/editPassword?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEwMzAiLCJlbWFpbCI6IjFsdWNhc2xwYTEyMzQ1QGdtYWlsLmNvbSIsImlhdCI6MTYwMjEyNzQ0OX0.o36QYSF2wJOizmWlwjBvWMdGZ8-ej614_E3ksxSvyas';
+  const linktest = 'http://localhost:2500/editPassword?token=';
   return {
     sut: new UpdateAccount(httpclient, linktest ),
     httpclient,
@@ -17,7 +17,8 @@ describe('updateaccount', () => {
     const {httpclient, sut, linktest} = makeSut();
     const spy = jest.spyOn(httpclient, 'put');
     const password = '4444444444';
-    sut.update(password);
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEwMzAiLCJlbWFpbCI6IjFsdWNhc2xwYTEyMzQ1QGdtYWlsLmNvbSIsImlhdCI6MTYwMjEyNzQ0OX0.o36QYSF2wJOizmWlwjBvWMdGZ8-ej614_E3ksxSvyas';
+    sut.update(password, token);
     expect(spy).toHaveBeenCalledWith(linktest, password);
   });
 
@@ -30,7 +31,9 @@ describe('updateaccount', () => {
       };
     });
     const password = '4444444444';
-    const res = await sut.update(password);
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEwMzAiLCJlbWFpbCI6IjFsdWNhc2xwYTEyMzQ1QGdtYWlsLmNvbSIsImlhdCI6MTYwMjEyNzQ0OX0.o36QYSF2wJOizmWlwjBvWMdGZ8-ej614_E3ksxSvyas';
+
+    const res = await sut.update(password, token);
     expect(res).toEqual({
       status: 500,
       message: 'Erro não identificado',
@@ -45,7 +48,9 @@ describe('updateaccount', () => {
       };
     });
     const password = '4444444444';
-    const res = await sut.update(password);
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEwMzAiLCJlbWFpbCI6IjFsdWNhc2xwYTEyMzQ1QGdtYWlsLmNvbSIsImlhdCI6MTYwMjEyNzQ0OX0.o36QYSF2wJOizmWlwjBvWMdGZ8-ej614_E3ksxSvyas';
+
+    const res = await sut.update(password, token);
     expect(res).toEqual({
       status: 200,
       message: 'Senha modificada com sucesso',

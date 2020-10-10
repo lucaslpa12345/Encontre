@@ -8,6 +8,8 @@ export class AxiosHttpClient implements httpClient {
       const res = await axios.post(url, data, {validateStatus: () => {
         return true;
       }});
+
+      console.log(res);
       return new Promise((resolve) => resolve(
           {
             status: res.status,

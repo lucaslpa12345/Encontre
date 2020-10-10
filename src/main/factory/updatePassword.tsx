@@ -4,13 +4,13 @@ import {AxiosHttpClient} from '../../infra/http/axios.http-client/axios.http-cli
 import {UpdateAccount} from '../../data/usecase/updateaccount/updateaccount';
 import {ValidateMinCaracteres} from '../../presentation/validators/minCaracteresValidator/ValidatorMinCaracteres';
 
-export const ForggotPasswordFactory = () => {
+export const UpdatePasswordFactory = () => {
   const clientHttp = new AxiosHttpClient;
   const validator = new ValidateMinCaracteres;
-  const updateaccount = new UpdateAccount(clientHttp, 'http://localhost:2500/sendEmail' );
+  const updateaccount = new UpdateAccount(clientHttp, 'http://localhost:2500/editPassword?token=' );
 
 
   return (
-    <ChangePassword httpclient={updateaccount} validatorMinCaracteres={validator} />
+    <ChangePassword updateaccount={updateaccount} validatorMinCaracteres={validator} />
   );
 };

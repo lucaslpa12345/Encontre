@@ -4,9 +4,11 @@ import {ButtonComponent, NormalInput} from '../../components/';
 import Context from '../../contexts/login/form.Contexts';
 import {Validator} from 'presentation/validators/interfaceValidator';
 import {Logo} from '../../components/logo/index';
+import {updateaccount} from '../../../domain/usecase/updateaccount';
 
    interface ChangePasswordTypes {
        validatorMinCaracteres: Validator
+       updateaccount : updateaccount
    }
 
 export const ChangePassword: React.FC<ChangePasswordTypes> = (props) => {
@@ -26,6 +28,8 @@ export const ChangePassword: React.FC<ChangePasswordTypes> = (props) => {
       setState({...state, isLoad: false});
       return setState({...state, error: 'Informações inválidas'});
     }
+    const res = await props.updateaccount.update(state.Senha);
+    console.log(res);
   }
 
   useEffect( () => {

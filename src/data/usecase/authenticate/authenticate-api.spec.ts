@@ -1,21 +1,5 @@
-import {token, AccountModel, accountModel, httpPostClient, httresponse, Authenticate, invalidData, somethingWrong, httpstatus} from './index';
-
-
-class HttpPostClientStub implements httpPostClient {
-  async post(url: string, data: AccountModel): Promise<httresponse> {
-    const res = {
-      status: httpstatus.ok,
-      body: {
-        token: token,
-      },
-    };
-
-
-    return new Promise((resolve) => resolve(
-        res,
-    ));
-  }
-}
+import {token, accountModel, Authenticate, invalidData, somethingWrong, httpstatus} from './index';
+import {AxiosHttpClient} from '../../../infra/http/axios.http-client/axios.http-client';
 
 const makeData = () => {
   return {
@@ -27,12 +11,12 @@ const makeData = () => {
 
 interface makeSutTypes {
    sut: Authenticate
-   httpPostClient: HttpPostClientStub
+   httpPostClient: AxiosHttpClient
 }
 
 const makeSut = (): makeSutTypes => {
   const url = 'any_url';
-  const httppostclient = new HttpPostClientStub;
+  const httppostclient = new AxiosHttpClient;
   return {
     sut: new Authenticate(url, httppostclient),
     httpPostClient: httppostclient,

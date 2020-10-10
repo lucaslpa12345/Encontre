@@ -1,8 +1,8 @@
-import {httresponse} from '../../data/protocols/httpclient/httpresponse';
+import {httpresponse} from '../../data/protocols/httpclient/httpresponse';
 export interface sendEmailDataModel {
      email: string,
 }
 
 export interface sendEmailInterface {
-    send(email: string): Promise<httresponse>
+    send(email: string): Promise<httpresponse>
 }

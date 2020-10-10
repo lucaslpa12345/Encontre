@@ -20,6 +20,6 @@ describe('sendemail', () => {
 
     sut.send(email);
 
-    expect(spy).toHaveBeenCalledWith( 'localhost:2500/sendEmail', email);
+    expect(spy).toHaveBeenCalledWith('localhost:2500/sendEmail', {'email': '1lucas12345@gmail.com'});
   });
 });

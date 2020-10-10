@@ -1,4 +1,6 @@
-import {httresponse} from '../../../data/protocols/httpclient/httpresponse';
-export interface httpPostClient {
-      post(url: string, data: any): Promise<httresponse>
+import {httpresponse} from '../../../data/protocols/httpclient/httpresponse';
+export interface httpClient {
+      post(url: string, data: any): Promise<httpresponse>
+      put(url: string, data: any): Promise<httpresponse>
+
 }

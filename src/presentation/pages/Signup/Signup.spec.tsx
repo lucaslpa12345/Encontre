@@ -5,6 +5,7 @@ import {createMemoryHistory} from 'history';
 import {Validator} from '../../validators/interfaceValidator';
 import {Router} from 'react-router-dom';
 import {Register} from '../../../data/usecase/register/register.api';
+import {AxiosHttpClient} from '../../../infra/http/axios.http-client/axios.http-client';
 class ValidationEmailStub implements Validator {
   public value: any
   isValid(value: string): boolean {
@@ -21,19 +22,11 @@ class ValidatorMinCaracteresStub implements Validator {
   }
 }
 
-class HttpClientStub {
-  public data : any
-  post(url: string, data: any): Promise<any> {
-    this.data = data;
-    return Promise.resolve('');
-  }
-}
-
 const history = createMemoryHistory();
 const makeSut = () => {
   const validatorEmail = new ValidationEmailStub;
   const validatorMinCaracteres = new ValidatorMinCaracteresStub;
-  const httpclient = new HttpClientStub;
+  const httpclient = new AxiosHttpClient;
   const register = new Register('any_url', httpclient);
   return {
     sut: render(

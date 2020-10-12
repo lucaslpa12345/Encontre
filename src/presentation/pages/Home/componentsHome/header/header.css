@@ -1,0 +1,26 @@
+#ContainerHeader { 
+    display: flex;
+    justify-content: space-between;
+}
+
+#ContainerLogo { 
+    display: flex;
+    padding: 1rem 1rem
+}
+#StrongLogo{ 
+    font-size: 2.5rem;
+}
+
+#ContainerProfile { 
+     height: 100%;
+     width: 10rem;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     transition: 0.2s;
+     cursor: pointer;
+}
+
+#ContainerProfile:hover {
+ background-color: rgb(0, 0, 0, 0.1);
+}

@@ -12,9 +12,7 @@ export class UpdateAccount implements updateaccount {
       password,
       token: this.url + token,
     };
-    console.log(data);
     const res = await this.httpPutClient.put(this.url, data);
-    console.log(res);
     if (res.status === 500) {
       return {
         status: 500,

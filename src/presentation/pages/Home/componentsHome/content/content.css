@@ -1,0 +1,33 @@
+#ContainerContent { 
+    height: 70%;
+    overflow-y: scroll;
+    border-top: rgb(230, 230, 230) 0.5px solid;
+}
+
+#VagaItem { 
+    padding: 1rem;
+    border-bottom: rgb(218, 217, 217) 0.5px solid;
+    word-wrap: break-word;
+    cursor: pointer;
+}
+
+#ContainerContent::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 2rem;
+  }
+  
+  /* Track */
+  #ContainerContent::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  #ContainerContent::-webkit-scrollbar-thumb {
+    background:rgb(23, 148, 221);
+  }
+  
+  /* Handle on hover */
+  #ContainerContent::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+

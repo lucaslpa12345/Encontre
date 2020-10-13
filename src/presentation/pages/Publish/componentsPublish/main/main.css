@@ -1,0 +1,85 @@
+#MainContainer { 
+     height: 86vh;
+}
+
+
+#FormPublish {
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+height: 80%;
+padding: 1rem;
+
+}
+
+#InputTitle { 
+    height: 2rem;
+    width: 90%;
+    font-size: 1rem;
+    padding: 0.5rem;
+    outline-color:  rgb(19, 106, 187);
+}
+
+#InputContato { 
+    height: 2rem;
+    width: 90%;
+    font-size: 1rem;
+    padding: 0.5rem;
+    outline-color:  rgb(19, 106, 187);
+}
+
+#InputPreço { 
+    height: 2rem;
+    width: 60%;
+    font-size: 1rem;
+    padding: 0.5rem;
+    outline-color:  rgb(19, 106, 187);
+}
+
+#dados { 
+    display: flex;
+    justify-content: space-around;
+    outline-color:  rgb(19, 106, 187);
+}
+
+#Informações { 
+    height: 5rem;
+    font-size: 1.2rem;
+    padding:1rem;
+    outline-color:  rgb(19, 106, 187);
+}
+#Buttons { 
+width: 50%;
+display: flex;
+justify-content: space-around;
+}
+#ButtonPublish { 
+    background-color:   rgb(19, 106, 187, 69);
+    color: white;
+    border: none;
+    outline: none;
+    height: 3rem;
+    width: 5rem;
+    font-size: 1rem;
+}
+
+#ButtonBack {
+    width: 4rem;
+    font-size: 1rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(29, 28, 28);
+    text-decoration: none;
+    border: rgb(153, 153, 153) 1px solid;
+}
+
+#SelectOptions { 
+    outline-color:  rgb(19, 106, 187);
+}
+#Tecnologias { 
+    height: 2rem;
+    font-size: 1rem;
+    padding: 0.5rem;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Header} from './componentsHome/header/header';
+import {Header} from '../../components/header/header';
 import {Main} from './componentsHome/main/main';
 import './home.css';
 export interface HomeProps {

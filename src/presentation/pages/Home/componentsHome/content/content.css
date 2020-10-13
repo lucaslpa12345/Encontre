@@ -1,7 +1,9 @@
 #ContainerContent { 
     height: 70%;
     overflow-y: scroll;
-    border-top: rgb(230, 230, 230) 0.5px solid;
+    border-top: rgb(168, 168, 168) 3px solid;
+    
+   
 }
 
 #VagaItem { 
@@ -9,6 +11,10 @@
     border-bottom: rgb(218, 217, 217) 0.5px solid;
     word-wrap: break-word;
     cursor: pointer;
+    background-color: white;
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(117,110,117,1);
+-moz-box-shadow: 0px 2px 5px 0px rgba(117,110,117,1);
+box-shadow: 0px 2px 5px 0px rgba(117,110,117,1);
 }
 
 #ContainerContent::-webkit-scrollbar {
@@ -23,7 +29,7 @@
   
   /* Handle */
   #ContainerContent::-webkit-scrollbar-thumb {
-    background:rgb(23, 148, 221);
+    background:rgb(167, 167, 167);
   }
   
   /* Handle on hover */
@@ -31,3 +37,13 @@
     background: #555;
   }
 
+#extra { 
+   display: block;
+   width: 100%;
+}
+
+#TypePryce {
+  display: block;
+  border: solid;
+  background-attachment: red;
+}

@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import './modal.css';
-import {context} from '../content/createcontexts';
+import {context} from '../../homecontext/contextmain';
 // import { Container } from './styles';
 
 export const Modal: React.FC = () => {
@@ -22,7 +22,13 @@ export const Modal: React.FC = () => {
              <div id='paragrafo' >
                <p id='Info' >{state.infoModal.info}</p>
              </div>
-             <strong id='Email' >email para contato: {state.infoModal.email} </strong>
+             <div id='extra' >
+               <strong id='Pryce' > valor/custo/salário: {state.infoModal.preçoOuCusto} </strong>
+               <strong id='Email' >Contato: {state.infoModal.email} </strong>
+               <strong id='Local' >Localização: {state.infoModal.local} </strong>
+               <strong id='Type' > {state.infoModal.tipo} </strong>
+               <strong id='PresencialRemoto' > {state.infoModal.PresencialOuRemoto} </strong>
+             </div>
            </div>
          </div>
        </div>) : <></>

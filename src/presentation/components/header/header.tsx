@@ -6,7 +6,6 @@ export const Header: React.FC = () => {
       <div id='ContainerLogo' >
         <strong id='StrongLogo' >Encontre</strong>
       </div>
-
       <div id='ContainerProfile' >
         <strong id='Name'> Usuário </strong>
       </div>

@@ -14,6 +14,7 @@
     background-color: white;
     height: auto;
     width: 90%;
+    padding: 1rem;
     z-index: 200;
 }
 
@@ -21,26 +22,47 @@
     height: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     word-wrap: break-word;
     padding: 1rem;
 }
 #paragrafo { 
-    height: 20rem;
+    height: 15rem;
     overflow-y: scroll;
+    margin: 0 5px;
 }
 
 #Title { 
      font-size: 1.5rem;
+     
 }
 
 #back { 
      color: rgb(32, 182, 241);
      display: flex;
-     padding: 1rem; 
      flex-direction: row-reverse;
 }
 #back span { 
     cursor: pointer;
     right: 0;
+}
+
+#extra { 
+     display: flex;
+     justify-content: space-between;
+     height: auto;
+   
+}
+
+
+@media(max-width: 500px) { 
+    
+#extra { 
+    display: flex;
+    flex-direction: column;
+    margin: 2px;
+    justify-content: space-between;
+    height: 10rem;
+    padding: 1rem;
+}
 }

@@ -11,8 +11,6 @@ interface State {
               HiddenSenha?: string
          },
     setState: any,
-
-
     }
 
 export default createContext({} as State);

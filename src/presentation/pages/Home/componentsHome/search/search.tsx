@@ -1,37 +1,51 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import './search.css';
 import {searchlocationsinterface} from './algorithms/searchLotions';
+import {searchfilterinterface} from './algorithms/searchFilter';
+import {context} from './../../homecontext/contextmain';
+import array from '../vagas.stub';
+import {Link} from 'react-router-dom';
 export interface SearchProps {
-  searchLocal: searchlocationsinterface
+  searchLocal: searchlocationsinterface,
+  searchFilter: searchfilterinterface
 }
 
 export const Search: React.FC<SearchProps> = (props) => {
-  const [state, setState] = useState({
+  const [states, setStates] = useState({
     searchlocal: '',
     search: '',
     locals: [''],
+    posts: [''],
   });
+  const {state, setState} = useContext(context);
 
   useEffect(() => {
-    const res = props.searchLocal.search(state.searchlocal) || '';
-    setState({...state, locals: [...res]});
-  }, [state.searchlocal]);
-  function onChangeSearchLocal(e: React.ChangeEvent<HTMLInputElement> ) {
-    setState({...state, searchlocal: e.target.value});
+    const res = props.searchLocal.search(states.searchlocal) || '';
+    setStates({...states, locals: [...res]});
+  }, [states.searchlocal]);
+
+  function searchLocalFilter(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    e.preventDefault();
+    const res = props.searchFilter.search(array, {searchingFor: states.search, local: states.searchlocal} );
+    setState({...states, vagas: res});
   }
+
+  useEffect(() => {
+    console.log('items:', states.posts);
+  }, [states.posts]);
 
 
   return (
     <div id='SearchContainer' >
       <div id='inputs' >
         <div id='select' >
-          <input placeholder='O que busca ?' list='city' id='search' type="text"/>
+          <input value={states.search} onChange={ (e) => setStates({...states, search: e.target.value})} placeholder='O que busca ?' list='city' id='search' type="text"/>
         </div>
         <div id='select' >
-          <input value={state.searchlocal} onChange={(e) => onChangeSearchLocal(e)} placeholder='Região' list='city' id='searchRegião' type="text"/>
+          <input value={states.searchlocal} onChange={ (e) => setStates({...states, searchlocal: e.target.value})}placeholder='Região. Caso em branco os resultados serão do brasil todo.' list='city' id='searchRegião' type="text"/>
           <div id='menu' >
             {
-              state.locals.map((i) => (<div onClick={ (e) => setState({...state, searchlocal: i})} key={i} >
+              states.locals.map((i) => (<div onClick={ (e) => setStates({...states, searchlocal: i})} key={i} >
                 <strong>{i}</strong>
               </div>) )
             }
@@ -39,8 +53,10 @@ export const Search: React.FC<SearchProps> = (props) => {
         </div>
       </div>
       <div id='ButtonContainer' >
-        <button id='ButtonSearch' >Procurar </button>
-        <button id='ButtonSearch' >  Publicar vaga </button>
+        <button onClick={(e) => {
+          searchLocalFilter(e);
+        }} id='ButtonSearch' >Procurar </button>
+        <Link to='/Publish' id='ButtonSearch' >  Publicar vaga </Link>
       </div>
     </div>
   );

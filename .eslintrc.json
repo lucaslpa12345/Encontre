@@ -26,7 +26,9 @@
     "rules": {
         "require-jsdoc": "off",
         "max-len": "off",
-        "react/prop-types": "off"
+        "react/prop-types": "off",
+        "linebreak-style": "off",
+        "no-use-before-define": "off"
     
     }
 }

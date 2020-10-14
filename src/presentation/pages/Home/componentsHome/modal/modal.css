@@ -1,0 +1,68 @@
+#modalContainer { 
+     height: 100%;
+     width: 100%;
+     position: absolute;
+     background-color: rgba(20, 20, 20, 0.9);
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     z-index: 200;
+     top: 0;
+}
+
+#ItemModal { 
+    background-color: white;
+    height: auto;
+    width: 90%;
+    padding: 1rem;
+    z-index: 200;
+}
+
+#vagaModal { 
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    word-wrap: break-word;
+    padding: 1rem;
+}
+#paragrafo { 
+    height: 15rem;
+    overflow-y: scroll;
+    margin: 0 5px;
+}
+
+#Title { 
+     font-size: 1.5rem;
+     
+}
+
+#back { 
+     color: rgb(32, 182, 241);
+     display: flex;
+     flex-direction: row-reverse;
+}
+#back span { 
+    cursor: pointer;
+    right: 0;
+}
+
+#extra { 
+     display: flex;
+     justify-content: space-between;
+     height: auto;
+   
+}
+
+
+@media(max-width: 500px) { 
+    
+#extra { 
+    display: flex;
+    flex-direction: column;
+    margin: 2px;
+    justify-content: space-between;
+    height: 10rem;
+    padding: 1rem;
+}
+}

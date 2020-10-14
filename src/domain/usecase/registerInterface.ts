@@ -1,4 +1,4 @@
-import {httresponse} from '../../data/protocols/httpclient/httpresponse';
+import {httpresponse} from '../../data/protocols/httpclient/httpresponse';
 export interface RegisterAccountModel {
      name: string,
      email: string,
@@ -7,5 +7,5 @@ export interface RegisterAccountModel {
 }
 
 export interface RegisterTypes {
-    reg(data: RegisterAccountModel): Promise<httresponse>
+    reg(data: RegisterAccountModel): Promise<httpresponse>
 }

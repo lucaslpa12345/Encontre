@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {ButtonComponent, NormalInput, Logo} from '../../components';
+import {ButtonComponent, NormalInput} from '../../components';
 import Context from '../../contexts/login/form.Contexts';
 import {Validator} from 'presentation/validators/interfaceValidator';
 import {RegisterTypes} from 'domain/usecase/registerInterface';
 import {useHistory} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import './styleSignup.css';
+import {Logo} from '../../components/logo/index';
 
 
    interface SignUpTypes {
@@ -87,7 +88,6 @@ export const SignUp: React.FC<SignUpTypes> = (props) => {
       e.preventDefault();
       setState({...state, isLoad: true});
       const auth = await props.Register.reg({name: state.Nome, email: state.Email, password: state.Senha, passwordConfirm: state['Confirmar Senha']});
-      console.log(auth);
       if (auth.message) {
         return setState({...state, error: auth.message});
       } else {
@@ -106,13 +106,17 @@ export const SignUp: React.FC<SignUpTypes> = (props) => {
       <main className='SubContainerSignup' >
         <Context.Provider value={{state, setState}}>
           <form className='FormSignup' action="">
+            <Logo/>
             <NormalInput placeholder='Nome' />
             <NormalInput placeholder='Email' />
             <NormalInput placeholder ='Senha' />
             <NormalInput placeholder='Confirmar Senha' />
-            <a className='ForgotPasswordSignup' href='/' > Esqueci a senha</a>
             <ButtonComponent execute={handleSubmitRegister} Text='SignUp' />
-            <Link to='/Login' className='LinkToLogin' >Login</Link>
+            <div>
+              <Link to='/Login' className='LinkToLogin' >Login</Link>
+              <Link to='/' className='LinkToLogin' >Voltar para o início</Link>
+            </div>
+
           </form>
         </Context.Provider>
       </main>

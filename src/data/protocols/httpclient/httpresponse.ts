@@ -7,7 +7,7 @@ export enum httpstatus {
 }
 
 
-export interface httresponse {
+export interface httpresponse {
  status: httpstatus
  body?: any
  message?: string

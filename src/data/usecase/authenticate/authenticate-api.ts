@@ -1,13 +1,12 @@
-import {AccountModel, httpPostClient, httpstatus, somethingWrong, invalidData, httresponse} from './';
+import {AccountModel, httpClient, httpstatus, somethingWrong, invalidData, httpresponse} from './';
 
 
 export class Authenticate {
   constructor(
     private readonly url:string,
-    private readonly httpPostClient:httpPostClient ) {}
+    private readonly httpPostClient: httpClient ) {}
 
-
-  async auth(data: AccountModel): Promise<httresponse> {
+  async auth(data: AccountModel): Promise<httpresponse> {
     const reshtppreq = await this.httpPostClient.post(this.url, data);
 
     switch (reshtppreq.status) {

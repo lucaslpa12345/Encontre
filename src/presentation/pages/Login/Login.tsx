@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import './styleLogin.css';
-import {ButtonComponent, NormalInput, Logo} from '../../components/';
+import {ButtonComponent, NormalInput} from '../../components/';
 import Context from '../../contexts/login/form.Contexts';
 import {Validator} from 'presentation/validators/interfaceValidator';
 import {AuthTypes} from 'data/usecase/authenticate';
 import {useHistory, Link} from 'react-router-dom';
-
+import {Logo} from '../../components/logo/index';
 
    interface LoginTypes {
      Validator: {
@@ -61,12 +61,13 @@ export const Login: React.FC<LoginTypes> = (props) => {
       e.preventDefault();
       setState({...state, isLoad: true});
       const auth = await props.Authenticate.auth({email: state.Email, password: state.Senha});
-      if (auth.status === 400 || 500) {
-        setState({...state, error: auth.message});
-        return cleanError();
-      } else {
+    
+      if (auth.status === 200) {
         localStorage.setItem('token', auth.data);
         history.push('/Home');
+        return;
+      } else {
+        setState({...state, error: auth.message});
         return cleanError();
       }
     } catch (error) {
@@ -80,12 +81,17 @@ export const Login: React.FC<LoginTypes> = (props) => {
       <div className='BackgroundColorLogin'></div>
       <main className='SubContainerLogin' >
         <Context.Provider value={{state, setState}}>
+
           <form className='FormLogin' action="">
+            <Logo/>
             <NormalInput placeholder='Email' />
             <NormalInput placeholder ='Senha' />
             <Link data-testid='ButtonForggotPassword' className='ForgotPasswordLogin' to='/ForggotPassword' > Esqueci a senha</Link>
             <ButtonComponent execute={handleSubmit} Text='Login' />
-            <Link data-testid='ButtonSignup' to='/Signup' className='LinkToSignup' >Sign-up</Link>
+            <div>
+              <Link to='/Signup' data-testid="ButtonSignup" className='LinkToSignup' >SignUp</Link>
+              <Link to='/' className='LinkToSignup' >Voltar para o início</Link>
+            </div>
           </form>
         </Context.Provider>
       </main>

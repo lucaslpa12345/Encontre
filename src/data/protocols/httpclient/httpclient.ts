@@ -1,5 +1,7 @@
-import {AccountModel} from '../../../domain/usecase/authInterface';
-import {httresponse} from '../../../data/protocols/httpclient/httpresponse';
-export interface httpPostClient {
-      post(url: string, data: AccountModel): Promise<httresponse>
+import {httpresponse} from '../../../data/protocols/httpclient/httpresponse';
+export interface httpClient {
+      post(url: string, data: any): Promise<httpresponse>
+      put(url: string, data: any): Promise<httpresponse>
+      getAll(url: string): Promise<httpresponse>
+
 }

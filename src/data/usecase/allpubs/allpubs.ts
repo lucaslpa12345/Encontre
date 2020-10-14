@@ -9,7 +9,6 @@ export class AllPubs implements allpubs {
   ) {}
   async getpubs(): Promise<any> {
     const res = await this.httpclient.getAll(this.url);
-    console.log('d', res);
     return res.body;
   }
 }

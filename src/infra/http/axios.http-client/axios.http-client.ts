@@ -9,7 +9,7 @@ export class AxiosHttpClient implements httpClient {
         return true;
       }});
 
-      console.log(res);
+      
       return new Promise((resolve) => resolve(
           {
             status: res.status,

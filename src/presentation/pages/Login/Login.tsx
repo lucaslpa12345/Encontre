@@ -61,7 +61,7 @@ export const Login: React.FC<LoginTypes> = (props) => {
       e.preventDefault();
       setState({...state, isLoad: true});
       const auth = await props.Authenticate.auth({email: state.Email, password: state.Senha});
-      console.log('wtf', auth);
+    
       if (auth.status === 200) {
         localStorage.setItem('token', auth.data);
         history.push('/Home');

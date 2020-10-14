@@ -39,7 +39,7 @@ export const ChangePassword: React.FC<ChangePasswordTypes> = (props) => {
     if (res.status === 500) {
       return setState({...state, error: message});
     }
-    console.log(res);
+
     if (res.status === 400) {
       return setState({...state, error: message});
     }
@@ -49,7 +49,7 @@ export const ChangePassword: React.FC<ChangePasswordTypes> = (props) => {
 
   useEffect( () => {
     const res = props.validatorMinCaracteres.isValid(state['Confirmar Senha'], 6);
-    console.log(res);
+
     if (!res) {
       setState({...state, 'Confirmar SenhaIsValid': false});
     } else {
@@ -73,7 +73,7 @@ export const ChangePassword: React.FC<ChangePasswordTypes> = (props) => {
 
   useEffect(() => {
     const [, token] = window.location.href.split('=');
-    console.log(token);
+
 
     setState({...state, token});
   }, []);

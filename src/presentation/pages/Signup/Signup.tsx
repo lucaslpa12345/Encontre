@@ -88,7 +88,6 @@ export const SignUp: React.FC<SignUpTypes> = (props) => {
       e.preventDefault();
       setState({...state, isLoad: true});
       const auth = await props.Register.reg({name: state.Nome, email: state.Email, password: state.Senha, passwordConfirm: state['Confirmar Senha']});
-      console.log(auth);
       if (auth.message) {
         return setState({...state, error: auth.message});
       } else {

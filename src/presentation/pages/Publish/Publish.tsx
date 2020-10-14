@@ -22,14 +22,14 @@ export const PublishComponent: React.FC<publishprops> = (props) => {
     presencialOuRemoto: '',
   });
 
-  useEffect(() => console.log(state), [state]);
+
   const history = useHistory();
 
   async function sendpub( e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
-    console.log('');
+
     const res = await props.publish.pub(state);
-    console.log(res);
+
     if (res.status === 200) {
       alert('Pub criada com sucesso');
       history.push('/Home');

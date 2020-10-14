@@ -6,7 +6,7 @@ describe.only('search Locaations', () => {
 
 
     const res = sut.search('brasília');
-    console.log('doidera', res);
+
   });
 });
 

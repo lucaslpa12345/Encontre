@@ -8,7 +8,7 @@ export class SendEmail implements sendEmailInterface {
   ) {}
   async send(email: string) : Promise<httpresponse> {
     const res = await this.httclient.post(this.url, {email: email});
-    console.log(res);
+
     if (!res.status) {
       return new Promise((resolve) => resolve({
         status: 500,

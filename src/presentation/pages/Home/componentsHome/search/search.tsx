@@ -30,9 +30,6 @@ export const Search: React.FC<SearchProps> = (props) => {
     setState({...states, vagas: res});
   }
 
-  useEffect(() => {
-    console.log('items:', states.posts);
-  }, [states.posts]);
 
 
   return (

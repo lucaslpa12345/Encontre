@@ -43,8 +43,7 @@ describe.only('search Locaations', () => {
 
     ];
 
-    const res = sut.search(array, {searchingFor: 'Flutter'});
-    console.log('cuzera', res);
+    sut.search(array, {searchingFor: 'Flutter'});
   });
 });
 

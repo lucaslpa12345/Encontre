@@ -15,10 +15,15 @@ export const Home: React.FC<HomeProps> = (props) => {
 
     },
     vagas: [{}],
+    posts: [{}],
   });
   async function getAllPubs() {
     const res = await props.getAllPubsfromDB.getpubs();
-    setState({...state, vagas: res.body});
+    const newres = res.body.map((i:any) => {
+      return {...i, id: `${i.id}`};
+    });
+    console.log(newres);
+    setState({...state, posts: newres, vagas: newres});
     return res;
   }
 
@@ -30,7 +35,7 @@ export const Home: React.FC<HomeProps> = (props) => {
 
 
     <div id="container">
-      <context.Provider value = {{state, setState}} >
+      <context.Provider value = {{state, setState, getAllPubs}} >
         <Header/>
         <Main/>
       </context.Provider>

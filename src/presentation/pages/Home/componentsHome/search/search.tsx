@@ -3,7 +3,6 @@ import './search.css';
 import {searchlocationsinterface} from './algorithms/searchLotions';
 import {searchfilterinterface} from './algorithms/searchFilter';
 import {context} from './../../homecontext/contextmain';
-import array from '../vagas.stub';
 import {Link} from 'react-router-dom';
 export interface SearchProps {
   searchLocal: searchlocationsinterface,
@@ -17,19 +16,30 @@ export const Search: React.FC<SearchProps> = (props) => {
     locals: [''],
     posts: [''],
   });
-  const {state, setState} = useContext(context);
+  const {state, setState, getAllPubs} = useContext(context);
 
   useEffect(() => {
     const res = props.searchLocal.search(states.searchlocal) || '';
     setStates({...states, locals: [...res]});
   }, [states.searchlocal]);
 
-  function searchLocalFilter(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+
+  async function searchLocalFilter(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
-    const res = props.searchFilter.search(array, {searchingFor: states.search, local: states.searchlocal} );
-    setState({...states, vagas: res});
+    console.log('posts', states.posts);
+    if (states.search === '' && states.searchlocal === '') {
+      return getAllPubs();
+    }
+    setStates({...states, posts: state.vagas});
+    const res = await props.searchFilter.search(state.posts.length > 0 ? state.posts : states.posts, {searchingFor: states.search, local: states.searchlocal} );
+    if (res.length ===0) {
+      return;
+    }
+
+    setState({...state, vagas: res});
   }
 
+  useEffect(()=> console.log(state), [state]);
 
 
   return (

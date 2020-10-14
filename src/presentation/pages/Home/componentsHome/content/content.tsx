@@ -1,15 +1,11 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 import './content.css';
 import {Modal} from '../modal/modal';
 import {context} from '../../homecontext/contextmain';
-import vagas from '../vagas.stub';
+
 
 export const Content: React.FC = () => {
   const {state, setState} = useContext(context);
-
-  useEffect(()=> {
-    console.log('pogss', state);
-  }, [state]);
 
 
   return <div id='ContainerContent' >

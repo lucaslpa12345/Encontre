@@ -5,8 +5,7 @@ describe.only('search Locaations', () => {
     const sut = new SearchLocations;
 
 
-    const res = sut.search('brasília');
-
+    sut.search('brasília');
   });
 });
 

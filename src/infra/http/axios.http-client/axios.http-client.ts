@@ -36,5 +36,15 @@ export class AxiosHttpClient implements httpClient {
       return error;
     }
   }
+
+  async getAll(url: string): Promise<httpresponse> {
+    const res = await axios.get(url);
+    return new Promise((resolve) => resolve(
+        {
+          status: res.status,
+          body: res.data,
+        },
+    ));
+  }
 }
 ;

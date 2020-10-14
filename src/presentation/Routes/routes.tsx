@@ -7,22 +7,22 @@ import {
 } from 'react-router-dom';
 import {LoginFactory} from '../../main/factory/LoginFactory';
 import {SignUpFactory} from '../../main/factory/SignupFactory';
-import {Home} from '../pages/Home/Home';
+import {HomeFactory} from '../../main/factory/homeFactory';
 import {FirstPage} from '../pages/InitialPage/FirstPage';
 import {UpdatePasswordFactory} from '../../main/factory/updatePassword';
 import {ForggotPasswordFactory} from '../../main/factory/forggotPasswordFactory';
-import {Publish} from '../../presentation/pages/Publish/Publish';
+import {publishFactory} from '../../main/factory/publishFactory';
 export default () => {
   return (
     <BrowserRouter>
       <Switch>
         <Route path='/' exact component={FirstPage} />
         <Route path='/Login' component={LoginFactory} />
-        <Route path='/Home' component={Home} />
+        <Route path='/Home' component={HomeFactory} />
         <Route path='/Signup' component={SignUpFactory} />
         <Route path='/ForggotPassword' component={ForggotPasswordFactory} />
         <Route path='/editPassword' exact component={UpdatePasswordFactory} />
-        <Route path='/Publish' component={Publish} />
+        <Route path='/Publish' component={publishFactory} />
       </Switch>
     </BrowserRouter>
 

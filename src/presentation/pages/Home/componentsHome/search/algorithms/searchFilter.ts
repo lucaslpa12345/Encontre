@@ -31,8 +31,6 @@ export class SearchLocalFilter implements searchfilterinterface {
     let newvalue: any= '';
     let newsearchingfor: any = '';
     if (searching.searchingFor) {
-      console.log('executa');
-      console.log(obj);
       obj.map((item) => {
         console.log('2', item, obj);
         const values:string[] = Object.values(item);
@@ -62,8 +60,6 @@ export class SearchLocalFilter implements searchfilterinterface {
       obj.map((i) => {
         const newLocal = i.localizaçao.toLocaleLowerCase();
         const newSearchingLocal = searching.local?.toLocaleLowerCase() || '';
-
-        console.log('reesult', newLocal.search(newSearchingLocal));
         if (newLocal.search(newSearchingLocal) !== -1) {
           resultwithLocal.push(i);
         }

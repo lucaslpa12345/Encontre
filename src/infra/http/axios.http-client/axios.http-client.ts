@@ -9,7 +9,7 @@ export class AxiosHttpClient implements httpClient {
         return true;
       }});
 
-      
+
       return new Promise((resolve) => resolve(
           {
             status: res.status,
@@ -37,8 +37,14 @@ export class AxiosHttpClient implements httpClient {
     }
   }
 
-  async getAll(url: string): Promise<httpresponse> {
-    const res = await axios.get(url);
+  async getAll(url: string, token: string): Promise<httpresponse> {
+    const res = await axios.get(url, {headers: {
+      authorization: `barear ${token}`,
+    },
+    validateStatus: () => {
+      return true;
+    },
+    });
     return new Promise((resolve) => resolve(
         {
           status: res.status,

@@ -1,5 +1,5 @@
 
 
 export interface allpubs {
-     getpubs(): Promise<any>
+     getpubs(token: string): Promise<any>
 }

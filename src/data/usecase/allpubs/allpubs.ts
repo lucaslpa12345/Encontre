@@ -7,8 +7,8 @@ export class AllPubs implements allpubs {
          private readonly httpclient: httpClient,
          private readonly url: string,
   ) {}
-  async getpubs(): Promise<any> {
-    const res = await this.httpclient.getAll(this.url);
+  async getpubs(token: string): Promise<any> {
+    const res = await this.httpclient.getAll(this.url, token);
     return res.body;
   }
 }

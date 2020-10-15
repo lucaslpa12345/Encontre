@@ -1,10 +1,15 @@
 import React from 'react';
 import './header.css';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 export const Header: React.FC = () => {
   const [state, setState] = React.useState({
     ShowProfileOptions: false,
   });
+
+  function logout() {
+    return localStorage.clear();
+  }
+
   return (
     <header id='ContainerHeader' >
       <div id='ContainerLogo' >
@@ -13,7 +18,7 @@ export const Header: React.FC = () => {
       <div onClick={ () => setState({...state, ShowProfileOptions: !state.ShowProfileOptions})} id='ContainerProfile' >
         <strong id='Name'> Usuário </strong>
         <div style={state.ShowProfileOptions ? {display: 'flex'} : {display: 'none'} } id='AccountOptions' >
-          <Link to='/' id='Option' >Sair</Link>
+          <Link to='/' onClick={() => logout()} id='Option' >Sair</Link>
         </div>
       </div>
     </header>

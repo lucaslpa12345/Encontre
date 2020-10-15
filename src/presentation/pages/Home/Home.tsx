@@ -26,7 +26,7 @@ export const Home: React.FC<HomeProps> = (props) => {
     const res = await props.getAllPubsfromDB.getpubs(token);
     console.log('aaaaa', res);
     if (res === 'Unauthorized') {
-     return history.push('/');
+      return history.push('/');
     }
     const newres = res.body.map((i:any) => {
       return {...i, id: `${i.id}`};

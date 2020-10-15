@@ -11,6 +11,7 @@ interface publishprops {
 
 export const PublishComponent: React.FC<publishprops> = (props) => {
   const [state, setState] = useState({
+    token: '',
     title: '',
     companyName: '',
     tecnology: '',
@@ -36,6 +37,14 @@ export const PublishComponent: React.FC<publishprops> = (props) => {
     }
   }
 
+  useEffect(()=> {
+    const token = localStorage.getItem('token');
+    console.log('token', token)
+    if (!token) {
+      return history.push('/');
+    }
+    setState({...state, token});
+  }, []);
 
   return (
     <div id='Container' >

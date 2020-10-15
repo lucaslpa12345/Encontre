@@ -52,5 +52,28 @@ export class AxiosHttpClient implements httpClient {
         },
     ));
   }
+
+  async postWithToken(url: string, data: any): Promise<httpresponse> {
+    try {
+      const res = await axios.post(url, data, {
+        headers: {
+          authorization: `barear ${data.token}`,
+        },
+        validateStatus: () => {
+          return true;
+        },
+      });
+
+
+      return new Promise((resolve) => resolve(
+          {
+            status: res.status,
+            body: res.data,
+          },
+      ));
+    } catch (error) {
+      return error;
+    }
+  }
 }
 ;

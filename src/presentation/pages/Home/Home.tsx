@@ -20,18 +20,18 @@ export const Home: React.FC<HomeProps> = (props) => {
     posts: [{}],
     unauthorized: false,
   });
+
+
   async function getAllPubs() {
-    console.log( 'token', localStorage.getItem(''));
     const token = localStorage.getItem('token') || '';
     const res = await props.getAllPubsfromDB.getpubs(token);
-    console.log('aaaaa', res);
     if (res === 'Unauthorized') {
       return history.push('/');
     }
     const newres = res.body.map((i:any) => {
       return {...i, id: `${i.id}`};
     });
-    console.log(newres);
+
     setState({...state, posts: newres, vagas: newres});
     return res;
   }

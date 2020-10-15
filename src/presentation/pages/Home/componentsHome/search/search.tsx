@@ -26,7 +26,6 @@ export const Search: React.FC<SearchProps> = (props) => {
 
   async function searchLocalFilter(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
-    console.log('posts', states.posts);
     if (states.search === '' && states.searchlocal === '') {
       return getAllPubs();
     }
@@ -39,7 +38,6 @@ export const Search: React.FC<SearchProps> = (props) => {
     setState({...state, vagas: res});
   }
 
-  useEffect(()=> console.log(state), [state]);
 
 
   return (

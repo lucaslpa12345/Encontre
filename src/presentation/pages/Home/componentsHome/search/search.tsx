@@ -39,7 +39,6 @@ export const Search: React.FC<SearchProps> = (props) => {
   }
 
 
-
   return (
     <div id='SearchContainer' >
       <div id='inputs' >

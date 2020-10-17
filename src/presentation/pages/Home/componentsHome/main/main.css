@@ -1,5 +1,25 @@
 #ContainerMain { 
      height: 100%;
-     overflow: hidden;
+     overflow-y: scroll;
    
 }
+
+#ContainerMain::-webkit-scrollbar {
+     width: 5px;
+     border-radius: 2rem;
+   }
+   
+   /* Track */
+   #ContainerMain::-webkit-scrollbar-track {
+     background: #f1f1f1;
+   }
+   
+   /* Handle */
+   #ContainerMain::-webkit-scrollbar-thumb {
+     background:rgb(167, 167, 167);
+   }
+   
+   /* Handle on hover */
+   #ContainerMain::-webkit-scrollbar-thumb:hover {
+     background: #555;
+   }

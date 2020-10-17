@@ -15,7 +15,6 @@ export const Main: React.FC<MainProps> = (props) => {
   const searchfilter = new SearchLocalFilter;
 
   const {state} = useContext(context);
- 
 
 
   return (

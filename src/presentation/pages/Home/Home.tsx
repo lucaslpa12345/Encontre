@@ -22,17 +22,22 @@ export const Home: React.FC<HomeProps> = (props) => {
   });
 
 
+  useEffect(() => {
+    console.log(state);
+  }, []);
+
+
   async function getAllPubs() {
     const token = localStorage.getItem('token') || '';
     const res = await props.getAllPubsfromDB.getpubs(token);
     if (res === 'Unauthorized') {
       return history.push('/');
     }
-    const newres = res.body.map((i:any) => {
-      return {...i, id: `${i.id}`};
+    const arrayWithIDinString = res.body.map((i:any) => {
+      return {...i, id: `${i.id}`, accountId: 'any_id'};
     });
 
-    setState({...state, posts: newres, vagas: newres});
+    setState({...state, posts: arrayWithIDinString, vagas: arrayWithIDinString});
     return res;
   }
 

@@ -4,16 +4,16 @@ interface search {
 }
 
 interface pub {
-  id: string
-  title : string
-  companyName: string
-  tecnology: string
-  informações: string
-  contato: string
-  preço: string
-  localizaçao: string
-  typo: string
-  presencialOuRemoto: string
+      id: string,
+      title: string,
+      proprietario: string,
+      info: string,
+      email: string,
+      skill: string,
+      tipo: string,
+      PresencialOuRemoto: string,
+      preçoOuCusto: string,
+      localizaçao: string,
 
 }
 
@@ -32,9 +32,10 @@ export class SearchLocalFilter implements searchfilterinterface {
     let newsearchingfor: any = '';
     if (searching.searchingFor) {
       obj.map((item) => {
+        console.log(item);
         const values:string[] = Object.values(item);
-
         for (let i = 0; i < values.length; i++) {
+          console.log('cheiro', values[i]);
           newvalue = values[i].toLocaleLowerCase();
           newsearchingfor = searching.searchingFor.toLocaleLowerCase();
           if (newvalue.search(newsearchingfor) !== -1 ) {
@@ -47,13 +48,14 @@ export class SearchLocalFilter implements searchfilterinterface {
     const resultwithLocal:any[] = [];
     if (searching.local && resultItems !== []) {
       resultItems.map((i) => {
-        const newLocal = i.localizaçao.toLocaleLowerCase();
+        const newLocal = i.local.toLocaleLowerCase();
         const newSearchingLocal = searching.local?.toLocaleLowerCase();
         if (newLocal.search(newSearchingLocal) !== -1) {
           resultwithLocal.push(i);
         }
       });
     }
+    console.log(obj);
     if (searching.local && resultItems.length === 0) {
       obj.map((i) => {
         const newLocal = i.localizaçao.toLocaleLowerCase();

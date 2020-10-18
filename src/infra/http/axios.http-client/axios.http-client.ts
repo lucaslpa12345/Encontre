@@ -37,8 +37,8 @@ export class AxiosHttpClient implements httpClient {
     }
   }
 
-  async getAll(url: string, token: string): Promise<httpresponse> {
-    const res = await axios.get(url, {headers: {
+  async getAll(url: string, token: string, page: number): Promise<httpresponse> {
+    const res = await axios.get(url+page, {headers: {
       authorization: `barear ${token}`,
     },
     validateStatus: () => {

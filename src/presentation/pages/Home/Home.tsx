@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import {Header} from '../../components/header/header';
 import {Main} from './componentsHome/main/main';
+import {Modal} from './componentsHome/modal/modal';
 import './home.css';
 import {context} from './homecontext/contextmain';
 import {allpubs} from '../../../domain/usecase/allpubs';
+import {Footer} from './componentsHome/footer/footer';
 import {useHistory} from 'react-router-dom';
 export interface HomeProps {
        getAllPubsfromDB: allpubs
@@ -27,9 +29,9 @@ export const Home: React.FC<HomeProps> = (props) => {
   }, []);
 
 
-  async function getAllPubs() {
+  async function getAllPubs(page:number) {
     const token = localStorage.getItem('token') || '';
-    const res = await props.getAllPubsfromDB.getpubs(token);
+    const res = await props.getAllPubsfromDB.getpubs(token, page);
     if (res === 'Unauthorized') {
       return history.push('/');
     }
@@ -41,15 +43,13 @@ export const Home: React.FC<HomeProps> = (props) => {
     return res;
   }
 
-  useEffect(() => {
-    getAllPubs();
-  }, []);
 
   return (
 
 
     <div id="container">
       <context.Provider value = {{state, setState, getAllPubs}} >
+        <Modal />
         <Header/>
         <Main/>
       </context.Provider>

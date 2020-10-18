@@ -1,19 +1,51 @@
 #ContainerContent { 
-    height: 70%;
-    border-top: rgb(168, 168, 168) 3px solid;
-    
+    height: 100%;
+
+    width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
    
 }
 
 #VagaItem { 
     padding: 1rem;
-    border-bottom: rgb(218, 217, 217) 0.5px solid;
+    border: rgb(218, 217, 217) 0.5px solid;
     word-wrap: break-word;
+
     cursor: pointer;
     background-color: white;
-    -webkit-box-shadow: 0px 2px 5px 0px rgba(117,110,117,1);
--moz-box-shadow: 0px 2px 5px 0px rgba(117,110,117,1);
-box-shadow: 0px 2px 5px 0px rgba(117,110,117,1);
+    width: 90%;
+    margin: 0.2rem;
+transition: 0.2s;
+}
+
+@media(min-width: 600px) { 
+  #VagaItem {  
+    width: 60%;
+    border-radius: 2rem;
+    padding: 2rem;
+}
+}
+#VagaItem:hover{ 
+  background-color: rgb(236, 236, 236);
+
+}
+
+#TitleContent { 
+  font-size: 1.7rem;
+  font-family: "Roboto";
+  color: rgb(31, 30, 30);
+}
+
+#InfoContent { 
+  color: rgb(88, 88, 88) ;
+  font-family: "Roboto"; 
+}
+
+#TecnologyContent{
+  
+  color: rgb(9, 74, 196)
 }
 
 #ContainerContent::-webkit-scrollbar {

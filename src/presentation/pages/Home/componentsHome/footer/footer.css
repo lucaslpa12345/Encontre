@@ -1,0 +1,25 @@
+#ContainerFooter { 
+     height: 200px;
+     display: flex;
+     margin-top: 2rem;
+     justify-content: center;
+     align-items: center;
+     width: 100%;
+}
+
+#atual { 
+     color: rgb(29, 191, 255);
+     font-size: 2rem;
+     margin: 0 0.8rem;
+}
+
+#proximo , #anterior {
+    transition: 0.2s;
+    cursor: pointer;
+
+    color: rgb(187, 187, 187);
+    font-size: 1.5rem;
+ }
+ #proximo:hover , #anterior:hover { 
+  color: rgb(29, 191, 255);
+ }

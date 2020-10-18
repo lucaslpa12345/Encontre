@@ -49,7 +49,6 @@ export const PublishComponent: React.FC<publishprops> = (props) => {
   return (
     <div id='Container' >
       <context.Provider value={{state, setState, sendpub}} >
-        <Header/>
         <Main/>
       </context.Provider>
     </div>

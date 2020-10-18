@@ -1,6 +1,17 @@
 #container { 
     display: flex;
     flex-direction: column;
-    height: 98vh;
+    height: 60%;
+  
 }
 
+@media(min-width: 600px) { 
+    #container { 
+        display: flex;
+        flex-direction: column;
+        height: 60%;
+      
+    }
+    
+    
+}

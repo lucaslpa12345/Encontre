@@ -4,17 +4,16 @@ interface search {
 }
 
 interface pub {
-      id: string,
-      title: string,
-      proprietario: string,
-      info: string,
-      email: string,
-      skill: string,
-      tipo: string,
-      PresencialOuRemoto: string,
-      preçoOuCusto: string,
-      localizaçao: string,
-
+    'id': string,
+    'title': string,
+    'companyName': string,
+    'tecnology': string,
+    'informações': string,
+    'contato': string,
+    'preço': string,
+    'localizaçao': string,
+    'typo': string,
+    'presencialOuRemoto': string,
 }
 
 export interface searchfilterinterface {

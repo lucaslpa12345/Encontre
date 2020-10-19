@@ -47,7 +47,7 @@ export const PublishComponent: React.FC<publishprops> = (props) => {
   }, []);
 
   return (
-    <div id='Container' >
+    <div id='PublishContainer' >
       <context.Provider value={{state, setState, sendpub}} >
         <Main/>
       </context.Provider>

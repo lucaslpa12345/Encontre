@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {Header} from '../../components/header/header';
-import {Main} from './componentsHome/main/main';
 import {Modal} from './componentsHome/modal/modal';
 import './home.css';
+import {Body} from './componentsHome/body/body'
 import {context} from './homecontext/contextmain';
 import {allpubs} from '../../../domain/usecase/allpubs';
 import {Footer} from './componentsHome/footer/footer';
@@ -47,11 +47,11 @@ export const Home: React.FC<HomeProps> = (props) => {
   return (
 
 
-    <div id="container">
+    <div id="HomeContainer">
       <context.Provider value = {{state, setState, getAllPubs}} >
         <Modal />
         <Header/>
-        <Main/>
+        <Body/>
       </context.Provider>
     </div>
   );

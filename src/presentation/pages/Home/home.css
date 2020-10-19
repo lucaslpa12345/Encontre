@@ -1,8 +1,9 @@
-#container { 
+#HomeContainer { 
      display: flex;
      flex-direction: column;
-     height: 98vh;
+      height: 99vh;
+     border: solid;
      overflow: hidden;
-   
+     
 }
 

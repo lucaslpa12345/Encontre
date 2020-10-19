@@ -24,9 +24,9 @@ export const Footer: React.FC = () => {
         return;
       }
       setStates({...states, page: states.page - 1});
-    }} >{'<'}</span>  <span id='atual' >  {states.page} </span> <span id='proximo'
+    }} >{'<<'}</span>  <span id='atual' >  {states.page} </span> <span id='proximo'
       onClick={ () => setStates({...states, page: states.page + 1})}
-    >{'>'}</span>
+    >{'>>'}</span>
   </div>;
 };
 

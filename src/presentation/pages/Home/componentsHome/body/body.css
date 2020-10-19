@@ -1,0 +1,48 @@
+#BodyContainer { 
+     display: flex;
+     flex-direction: column;
+     height: 10rem;
+}
+
+#MenuBody { 
+    background-color: rgb(14, 158, 224);
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+ #Selected { 
+    font-family: "Roboto";
+    padding: 0.5rem;
+    color: white;
+    background-color: rgb(226, 221, 221, 0.5);
+font-size:1.5rem;
+}
+
+#NSelected { 
+    color: white;
+    padding: 0.5rem;
+    background-color: rgb(14, 158, 224);
+}
+
+#Filtrar { 
+    display: flex;
+    justify-content: center;
+    background-color: rgb(14, 158, 224);
+    color: white;
+    transition: 0.2s;
+}
+
+#Filtrar:active { 
+    background-color: rgb(184, 190, 192, 0.8);
+}
+
+
+
+
+@media(min-width: 600px) {
+    #Filtrar{ 
+         display: none;
+    }
+}
+

@@ -1,20 +1,18 @@
 import React from 'react';
-import {Search} from '../../componentsHome/search/search';
-import {SearchLocalFilter} from '../../componentsHome/search/algorithms/searchFilter';
-import {SearchLocations} from '../search/algorithms/searchLotions';
 import {PublishComponent} from '../../../Publish/Publish';
 import {Publish} from '../../../../../data/usecase/publish/publish';
 import {AxiosHttpClient} from '../../../../../infra/http/axios.http-client/axios.http-client';
 import './body.css';
 import {Footer} from '../../componentsHome/footer/footer';
 import {context} from '../../homecontext/contextmain';
+import {SearchFactory} from '../../../../../main/factory/searchFactory';
 
 export const Body: React.FC = () => {
-  const [states, setState] = React.useState({
+  const [states, setStates] = React.useState({
     Page: 1,
     Search: false,
   });
-  const {state} = React.useContext(context);
+  const {state, setState} = React.useContext(context);
 
   function setSearch() {
     const element = document.getElementById('SearchContainer');
@@ -29,34 +27,32 @@ export const Body: React.FC = () => {
 
   const http = new AxiosHttpClient;
   const publish = new Publish(http, 'localhost:2500/publish');
-  const searchLocalfilter = new SearchLocalFilter;
-  const searchfilter = new SearchLocations;
   return <div id='BodyContainer' >
     <div id='MenuBody' >
-      <span id='Selected' >Vagas</span>
-      <span id= 'NSelected'>Nova Vaga</span>
+      <span onClick={() => setStates({...states, Page: 1})} id= { states.Page === 1 ? 'Selected' :'NSelected'} >Vagas</span>
+      <span onClick={() => setStates({...states, Page: 2})} id= { states.Page === 2 ? 'Selected' :'NSelected'}>Nova Vaga</span>
     </div>
-    <span onClick={() => {
-      setState({...states, Search: !states.Search});
+    {states.Page === 1 && <span onClick={() => {
+      setStates({...states, Search: !states.Search});
       setSearch();
-    }} id='Filtrar' >filtrar</span>
-    {states.Page === 2 ? <></> : <div id='Page1' >
-      <Search searchFilter={searchLocalfilter} searchLocal={searchfilter} />
+    }} id='Filtrar' >filtrar</span>}
+    {states.Page === 2 ? <PublishComponent publish={publish}/> : <div id='Page1' >
+      <SearchFactory/>
       <div>
         {
           state.vagas.map((i:any) => {
-            console.log(i);
             return (
-              <div key={i.id} >
-                <span>{i.title}</span>
+              <div onClick={() => setState({...state, infoModal: i, openModal: true})} id='ItemContainer' key={i.id} >
+                <span id='ItemTitle' >{i.title}</span>
+                <span id='ItemName' >{i.companyName}</span>
+                <span id='ItemTecnology'>{i.tecnology}</span>
               </div>
             );
           })
         }
       </div>
     </div> }
-    {states.Page === 2 ? <PublishComponent publish={publish}/> : <></>}
-    <Footer/>
+    {states.Page === 1 && <Footer/>}
   </div>;
 };
 

@@ -1,56 +1,51 @@
-import React, {useEffect, useState, useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import './search.css';
-import {searchlocationsinterface} from './algorithms/searchLotions';
-import {searchfilterinterface} from './algorithms/searchFilter';
 import {context} from './../../homecontext/contextmain';
-import {Link} from 'react-router-dom';
+import {search} from '../../../../../domain/usecase/search';
+
 
 export interface SearchProps {
-  searchLocal: searchlocationsinterface,
-  searchFilter: searchfilterinterface
+  search: search
 }
 
-export const Search: React.FC<SearchProps> = (props) => {
+export const SearchComponent: React.FC<SearchProps> = (props) => {
   const [states, setStates] = useState({
-    searchlocal: '',
+    searchRegion: '',
     search: '',
     locals: [''],
     posts: [''],
   });
   const {state, setState, getAllPubs} = useContext(context);
 
-  useEffect(() => {
-    const res = props.searchLocal.search(states.searchlocal) || '';
-    setStates({...states, locals: [...res]});
-  }, [states.searchlocal]);
 
-
-  async function searchLocalFilter(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+  async function searchFilter(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
-    if (states.search === '' && states.searchlocal === '') {
+    if (states.search === '' && states.searchRegion === '') {
       return getAllPubs();
     }
-    setStates({...states, posts: state.vagas});
-    const res = await props.searchFilter.search(state.posts.length > 0 ? state.posts : states.posts, {searchingFor: states.search, local: states.searchlocal} );
-    if (res.length ===0) {
-      return;
-    }
-
-    setState({...state, vagas: res});
+    const token = localStorage.getItem('token') || '';
+    const data = {
+      token: token,
+      index: state.page,
+      search: states.search,
+      region: states.searchRegion,
+    };
+    const res = await props.search.search(data);
+    setState({...state, vagas: res.body});
   }
 
 
   return (
     <div id='SearchContainer' >
       <input value={states.search} onChange={ (e) => setStates({...states, search: e.target.value})} placeholder='O que busca ?' list='city' id='search' type="text"/>
-      <input value={states.searchlocal} onChange={ (e) => setStates({...states, searchlocal: e.target.value})}placeholder='Região. Caso em branco os resultados serão do brasil todo.' list='city' id='searchRegião' type="text"/>
+      <input value={states.searchRegion} onChange={ (e) => setStates({...states, searchRegion: e.target.value})}placeholder='Região. Caso em branco os resultados serão do brasil todo.' list='city' id='searchRegião' type="text"/>
       {
-        states.locals.map((i) => (<div onClick={ (e) => setStates({...states, searchlocal: i})} key={i} >
+        states.locals.map((i) => (<div onClick={ (e) => setStates({...states, searchRegion: i})} key={i} >
           <strong>{i}</strong>
         </div>) )
       }
       <button onClick={(e) => {
-        searchLocalFilter(e);
+        searchFilter(e);
       }} id='ButtonSearch' >Procurar </button>
     </div>
   );

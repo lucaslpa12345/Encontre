@@ -1,11 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {Header} from '../../components/header/header';
 import {Modal} from './componentsHome/modal/modal';
 import './home.css';
-import {Body} from './componentsHome/body/body'
+import {Body} from './componentsHome/body/body';
 import {context} from './homecontext/contextmain';
 import {allpubs} from '../../../domain/usecase/allpubs';
-import {Footer} from './componentsHome/footer/footer';
 import {useHistory} from 'react-router-dom';
 export interface HomeProps {
        getAllPubsfromDB: allpubs
@@ -20,13 +19,12 @@ export const Home: React.FC<HomeProps> = (props) => {
     },
     vagas: [{}],
     posts: [{}],
+    page: 1,
     unauthorized: false,
   });
 
-
-  useEffect(() => {
-    console.log(state);
-  }, []);
+  React.useEffect(() => {
+  }, [state]);
 
 
   async function getAllPubs(page:number) {

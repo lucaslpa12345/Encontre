@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import {Header} from '../../components/header/header';
 import {Main} from './componentsPublish/main/main';
 import {useHistory} from 'react-router-dom';
 import './publish.css';
@@ -39,7 +38,6 @@ export const PublishComponent: React.FC<publishprops> = (props) => {
 
   useEffect(()=> {
     const token = localStorage.getItem('token');
-    console.log('token', token)
     if (!token) {
       return history.push('/');
     }

@@ -1,5 +1,5 @@
 #SearchContainer { 
-    height: 20rem;
+    height: 12rem;
    padding: 1rem;
    display: flex;
    flex-direction: column;
@@ -37,17 +37,18 @@
 @media(min-width: 600px) { 
     #SearchContainer { 
         display: flex;
+        width: 20rem;
     }
 
     #search { 
    
-        width: 40%;
+        width: 100%;
     
    }
    
    #searchRegião { 
       
-       width: 40%;
+       width: 100%;
      
    }
 }

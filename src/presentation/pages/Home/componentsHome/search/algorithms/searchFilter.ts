@@ -31,10 +31,10 @@ export class SearchLocalFilter implements searchfilterinterface {
     let newsearchingfor: any = '';
     if (searching.searchingFor) {
       obj.map((item) => {
-        console.log(item);
+      
         const values:string[] = Object.values(item);
         for (let i = 0; i < values.length; i++) {
-          console.log('cheiro', values[i]);
+    
           newvalue = values[i].toLocaleLowerCase();
           newsearchingfor = searching.searchingFor.toLocaleLowerCase();
           if (newvalue.search(newsearchingfor) !== -1 ) {
@@ -54,7 +54,7 @@ export class SearchLocalFilter implements searchfilterinterface {
         }
       });
     }
-    console.log(obj);
+   
     if (searching.local && resultItems.length === 0) {
       obj.map((i) => {
         const newLocal = i.localizaçao.toLocaleLowerCase();
@@ -65,7 +65,6 @@ export class SearchLocalFilter implements searchfilterinterface {
       });
     }
 
-    console.log('withlocal', resultItems);
     if (resultwithLocal.length > 0) {
       return resultwithLocal;
     } else {

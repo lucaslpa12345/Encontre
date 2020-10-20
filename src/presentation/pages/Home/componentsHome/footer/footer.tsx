@@ -7,14 +7,14 @@ export const Footer: React.FC = () => {
   const [states, setStates] = React.useState({
     page: 1,
   });
-  const {getAllPubs} = React.useContext(context);
+  const {state, getAllPubs, setState} = React.useContext(context);
   React.useEffect(() => {
-    const form = document.getElementById('ContainerMain');
-    console.log(form);
+    const form = document.getElementById('BodyContainer');
     if (form) {
       form.scrollTo(0, 0 );
     };
     getAllPubs(states.page);
+    setState({...state, page: states.page});
   }, [states.page]);
 
 

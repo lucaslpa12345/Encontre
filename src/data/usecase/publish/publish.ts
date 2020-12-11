@@ -9,7 +9,10 @@ export class Publish implements publish {
     private readonly url : string,
   ) {}
   async pub(data: data) : Promise<httpresponse> {
+
+    console.log('data',this.url)
     const res = await this.httclient.postWithToken(this.url, data);
+    console.log('res', res)
     if (!res.status) {
       return new Promise((resolve) => resolve({
         status: 500,

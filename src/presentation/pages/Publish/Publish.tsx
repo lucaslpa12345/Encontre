@@ -27,7 +27,7 @@ export const PublishComponent: React.FC<publishprops> = (props) => {
 
   async function sendpub( e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
-
+    console.log('state',state)
     const res = await props.publish.pub(state);
 
     if (res.status === 200) {

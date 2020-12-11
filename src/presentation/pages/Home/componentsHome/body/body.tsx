@@ -6,6 +6,7 @@ import './body.css';
 import {Footer} from '../../componentsHome/footer/footer';
 import {context} from '../../homecontext/contextmain';
 import {SearchFactory} from '../../../../../main/factory/searchFactory';
+import {PublishFactory} from '../../../../../main/factory/publishFactory'
 
 export const Body: React.FC = () => {
   const [states, setStates] = React.useState({
@@ -26,7 +27,6 @@ export const Body: React.FC = () => {
   }
 
   const http = new AxiosHttpClient;
-  const publish = new Publish(http, 'localhost:2500/publish');
   return <div id='BodyContainer' >
     <div id='MenuBody' >
       <span onClick={() => setStates({...states, Page: 1})} id= { states.Page === 1 ? 'Selected' :'NSelected'} >Vagas</span>
@@ -36,7 +36,7 @@ export const Body: React.FC = () => {
       setStates({...states, Search: !states.Search});
       setSearch();
     }} id='Filtrar' >filtrar</span>}
-    {states.Page === 2 ? <PublishComponent publish={publish}/> : <div id='Page1' >
+    {states.Page === 2 ? <PublishFactory/> : <div id='Page1' >
       <SearchFactory/>
       <div>
         {

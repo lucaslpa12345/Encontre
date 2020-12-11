@@ -11,7 +11,7 @@ import {HomeFactory} from '../../main/factory/homeFactory';
 import {FirstPage} from '../pages/InitialPage/FirstPage';
 import {UpdatePasswordFactory} from '../../main/factory/updatePassword';
 import {ForggotPasswordFactory} from '../../main/factory/forggotPasswordFactory';
-import {publishFactory} from '../../main/factory/publishFactory';
+import {PublishFactory} from '../../main/factory/publishFactory';
 export default () => {
   return (
     <BrowserRouter>
@@ -22,7 +22,7 @@ export default () => {
         <Route path='/Signup' component={SignUpFactory} />
         <Route path='/ForggotPassword' component={ForggotPasswordFactory} />
         <Route path='/editPassword' exact component={UpdatePasswordFactory} />
-        <Route path='/Publish' component={publishFactory} />
+        <Route path='/Publish' component={PublishFactory} />
       </Switch>
     </BrowserRouter>
 

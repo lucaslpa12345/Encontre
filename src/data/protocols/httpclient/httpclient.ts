@@ -5,5 +5,4 @@ export interface httpClient {
       getAll(url: string, token: string, page: number): Promise<httpresponse>
       postWithToken(url: string, data: any): Promise<httpresponse>
       get(url: string, data: any): Promise<httpresponse>
-
 }

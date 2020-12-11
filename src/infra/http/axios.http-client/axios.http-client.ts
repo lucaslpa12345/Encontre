@@ -5,9 +5,11 @@ import {httpClient, httpresponse} from './';
 export class AxiosHttpClient implements httpClient {
   async post(url: string, data: any): Promise<httpresponse> {
     try {
+     console.log('kkaka', data)
       const res = await axios.post(url, data, {validateStatus: () => {
         return true;
       }});
+
 
 
       return new Promise((resolve) => resolve(
@@ -55,6 +57,7 @@ export class AxiosHttpClient implements httpClient {
 
   async postWithToken(url: string, data: any): Promise<httpresponse> {
     try {
+      console.log('dados', url, data)
       const res = await axios.post(url, data, {
         headers: {
           authorization: `barear ${data.token}`,

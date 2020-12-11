@@ -26,6 +26,8 @@
     border: none;
     color: white;
     padding: 1rem;
+    cursor:pointer;
+
 }
 
 @media(max-width: 600px) { 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Header} from '../../components/header/header';
 import {Modal} from './componentsHome/modal/modal';
 import './home.css';
@@ -36,10 +36,11 @@ export const Home: React.FC<HomeProps> = (props) => {
     const arrayWithIDinString = res.body.map((i:any) => {
       return {...i, id: `${i.id}`, accountId: 'any_id'};
     });
-
     setState({...state, posts: arrayWithIDinString, vagas: arrayWithIDinString});
     return res;
   }
+
+  
 
 
   return (

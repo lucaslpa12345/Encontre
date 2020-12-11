@@ -50,6 +50,11 @@
     justify-content: center;
     background-color: rgb(30, 154, 236);
     border: none;
+    cursor:pointer;
     color: white;
     outline-color: black;
+}
+
+#ButtonPublish:active { 
+     background-color: aliceblue;
 }

@@ -50,9 +50,12 @@
     padding: 2rem;
     border: solid 1px rgb(214, 214, 214);
     border-radius: 2rem;
+    cursor:pointer;
 }
 #ItemContainer * { 
      margin: 0.5rem;
+     cursor:pointer;
+
 }
 #ItemTitle { 
     font-family: "Roboto";

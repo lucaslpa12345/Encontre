@@ -28,7 +28,10 @@ export const Main: React.FC = () => {
       <textarea onChange={(e) => setState({...state, informações: e.target.value}) } id='Informações' placeholder='Informações' />
       <input onChange={(e) => setState({...state, tecnology: e.target.value}) } className='InputPublish' placeholder='Principais tecnologias' />
       <div id='Buttons' >
-        <button onClick={(e) => sendpub(e)} id='ButtonPublish' >
+        <button onClick={(e) => {
+           sendpub(e)
+
+        }} id='ButtonPublish' >
           Publicar
         </button>
       </div>

@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import './content.css';
 import {Modal} from '../modal/modal';
 import {context} from '../../homecontext/contextmain';
-
+import vagas from '../vagas.stub'
 
 export const Content: React.FC = () => {
   const {state, setState} = useContext(context);

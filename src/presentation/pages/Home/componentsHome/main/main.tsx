@@ -5,6 +5,7 @@ import {SearchLocations} from '../search/algorithms/searchLotions';
 import {SearchLocalFilter} from '../search/algorithms/searchFilter';
 import {context} from '../../homecontext/contextmain';
 import vagas from '../vagas.stub';
+import {Header} from '../../../../components/header/header'
 import './main.css';
 export interface MainProps {
 }
@@ -20,10 +21,12 @@ export const Main: React.FC<MainProps> = (props) => {
 
   return (
     <main id='ContainerMain' >
-
-      <Search searchFilter={searchfilter} searchLocal={searchlocation} />
+       <Header/>
+    <div id='ContainerMainContents' >
+       <Search searchFilter={searchfilter} searchLocal={searchlocation} />
       <Content/>
 
+    </div>
     </main>
   );
 };

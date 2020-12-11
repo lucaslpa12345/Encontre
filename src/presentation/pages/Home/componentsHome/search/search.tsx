@@ -62,8 +62,8 @@ export const Search: React.FC<SearchProps> = (props) => {
       <div id='ButtonContainer' >
         <button onClick={(e) => {
           searchLocalFilter(e);
-        }} id='ButtonSearch' >Procurar </button>
-        <Link to='/Publish' id='ButtonSearch' >  Publicar vaga </Link>
+        }} id='ButtonSearch' >Procurar vaga </button>
+        <Link to='/Publish' id='ButtonToPublishPage' >  Publicar nova vaga </Link>
       </div>
     </div>
   );

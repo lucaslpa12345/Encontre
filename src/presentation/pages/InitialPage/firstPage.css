@@ -19,7 +19,7 @@
 }
 .FirstPageContainer .header h1 { 
     color :   rgb(68, 68, 68);
-    font-size: 50px;
+    font-size: 30px;
 }
 
 .FirstPageContainer  .header .Buttons { 
@@ -56,7 +56,7 @@ justify-content: center;
 }
 .FirstPageContainer main h2 { 
     color : white ; 
-    font-size: 5rem ;
+    font-size: 3.5rem ;
 }
 .FirstPageContainer main img { 
     margin: 2rem;
